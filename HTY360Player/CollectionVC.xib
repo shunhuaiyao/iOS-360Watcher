@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CollectionVC">
+            <connections>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mailboxBG" translatesAutoresizingMaskIntoConstraints="NO" id="rjm-BJ-bid">
+                    <rect key="frame" x="-1" y="-1" width="669" height="377"/>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="igw-ry-egv">
+                    <rect key="frame" x="592" y="25" width="35" height="41"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="35" id="UfR-8S-CIu"/>
+                        <constraint firstAttribute="height" constant="41" id="ebZ-uX-Xiw"/>
+                    </constraints>
+                    <state key="normal" image="mailbox"/>
+                    <connections>
+                        <action selector="tappedMailboxBtn:" destination="-1" eventType="touchUpInside" id="bNC-d8-fIa"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="08E-P3-Fji">
+                    <rect key="frame" x="35" y="28" width="30" height="29"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="29" id="Hcp-xP-xXP"/>
+                        <constraint firstAttribute="width" constant="30" id="lJZ-q3-Fqo"/>
+                    </constraints>
+                    <state key="normal" image="exit"/>
+                    <connections>
+                        <action selector="tappedExitBtn:" destination="-1" eventType="touchUpInside" id="JA5-S9-UgY"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gFE-Hn-c7a">
+                    <rect key="frame" x="120" y="60" width="45" height="36"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="36" id="gds-TK-dAE"/>
+                        <constraint firstAttribute="width" constant="45" id="nDz-wX-ecQ"/>
+                    </constraints>
+                    <state key="normal" image="report"/>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NlX-Dn-DMH">
+                    <rect key="frame" x="205" y="60" width="45" height="35"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="35" id="A4P-LO-AcI"/>
+                        <constraint firstAttribute="width" constant="45" id="XRV-8C-m7q"/>
+                    </constraints>
+                    <state key="normal" title="Button" image="ordinary"/>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xfF-cy-829">
+                    <rect key="frame" x="290" y="60" width="45" height="34"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="34" id="KDO-cJ-jz9"/>
+                        <constraint firstAttribute="width" constant="45" id="nMT-Ix-Hw5"/>
+                    </constraints>
+                    <state key="normal" title="Button" image="official"/>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="觀測報告    No.23 Sölktal valley" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bUd-hq-V4g">
+                    <rect key="frame" x="120" y="130" width="223" height="19.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="觀測報告    No.15 UNI PAPA" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oOe-wP-Ywb">
+                    <rect key="frame" x="120" y="169.5" width="197" height="19.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="觀測報告    No.7 望幽谷" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H0F-iX-jU3">
+                    <rect key="frame" x="120" y="209" width="167" height="19.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="觀測報告    No.1 忘憂森林" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xBb-qp-Wq5">
+                    <rect key="frame" x="120" y="248.5" width="181" height="19.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="rjm-BJ-bid" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="-1" id="3gV-T9-8yw"/>
+                <constraint firstItem="xfF-cy-829" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="60" id="AIO-Go-V7m"/>
+                <constraint firstItem="bUd-hq-V4g" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="120" id="DbV-bC-5CC"/>
+                <constraint firstItem="gFE-Hn-c7a" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="60" id="GWa-0E-pEo"/>
+                <constraint firstItem="08E-P3-Fji" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="35" id="GhC-MG-v0N"/>
+                <constraint firstItem="bUd-hq-V4g" firstAttribute="top" secondItem="NlX-Dn-DMH" secondAttribute="bottom" constant="35" id="GqX-Xi-xoC"/>
+                <constraint firstItem="xfF-cy-829" firstAttribute="leading" secondItem="NlX-Dn-DMH" secondAttribute="trailing" constant="40" id="Hh3-8E-8Dr"/>
+                <constraint firstItem="08E-P3-Fji" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="28" id="IGl-V2-Oj8"/>
+                <constraint firstAttribute="trailing" secondItem="rjm-BJ-bid" secondAttribute="trailing" constant="-1" id="KMM-u0-IeI"/>
+                <constraint firstItem="igw-ry-egv" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="25" id="Lf3-2u-AR8"/>
+                <constraint firstItem="NlX-Dn-DMH" firstAttribute="leading" secondItem="gFE-Hn-c7a" secondAttribute="trailing" constant="40" id="OeR-k2-hdt"/>
+                <constraint firstItem="xBb-qp-Wq5" firstAttribute="top" secondItem="H0F-iX-jU3" secondAttribute="bottom" constant="20" id="Qak-uH-Ns9"/>
+                <constraint firstItem="H0F-iX-jU3" firstAttribute="top" secondItem="oOe-wP-Ywb" secondAttribute="bottom" constant="20" id="T6p-hH-0c2"/>
+                <constraint firstItem="gFE-Hn-c7a" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="120" id="Vqb-OY-NgI"/>
+                <constraint firstItem="oOe-wP-Ywb" firstAttribute="top" secondItem="bUd-hq-V4g" secondAttribute="bottom" constant="20" id="XeW-BH-4Ay"/>
+                <constraint firstAttribute="trailing" secondItem="igw-ry-egv" secondAttribute="trailing" constant="40" id="Yyp-qx-M9A"/>
+                <constraint firstItem="NlX-Dn-DMH" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="60" id="dPy-ZW-iEl"/>
+                <constraint firstItem="H0F-iX-jU3" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="120" id="i4N-2k-tat"/>
+                <constraint firstItem="xBb-qp-Wq5" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="120" id="s3b-Mb-iQE"/>
+                <constraint firstItem="oOe-wP-Ywb" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="120" id="snr-PP-Anv"/>
+                <constraint firstAttribute="bottom" secondItem="rjm-BJ-bid" secondAttribute="bottom" constant="-1" id="tVX-MI-G2N"/>
+                <constraint firstItem="rjm-BJ-bid" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="-1" id="u3b-Rz-ujr"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="260.5" y="218.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="exit" width="229" height="229"/>
+        <image name="mailbox" width="598" height="613"/>
+        <image name="mailboxBG" width="2461" height="1365"/>
+        <image name="official" width="573" height="371"/>
+        <image name="ordinary" width="573" height="371"/>
+        <image name="report" width="501" height="443"/>
+    </resources>
+</document>

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>Id</key>
+		<integer>1</integer>
+		<key>Group</key>
+		<string>Embracive</string>
+		<key>Phrase</key>
+		<string>Creative, Passionate</string>
+	</dict>
+	<dict>
+		<key>Id</key>
+		<integer>2</integer>
+		<key>Group</key>
+		<string>Aggressive</string>
+		<key>Phrase</key>
+		<string>Criticism, Cynicism</string>
+	</dict>
+	<dict>
+		<key>Id</key>
+		<integer>3</integer>
+		<key>Group</key>
+		<string>Depressive</string>
+		<key>Phrase</key>
+		<string>Defensivness, Anxiety</string>
+	</dict>
+	<dict>
+		<key>Id</key>
+		<integer>4</integer>
+		<key>Group</key>
+		<string>Embracive</string>
+		<key>Phrase</key>
+		<string>Friendly, Warm</string>
+	</dict>
+	<dict>
+		<key>Id</key>
+		<integer>5</integer>
+		<key>Group</key>
+		<string>Aggressive</string>
+		<key>Phrase</key>
+		<string>Hostility, Anger</string>
+	</dict>
+	<dict>
+		<key>Id</key>
+		<integer>6</integer>
+		<key>Group</key>
+		<string>Embracive</string>
+		<key>Phrase</key>
+		<string>Leadership, Charisma</string>
+	</dict>
+	<dict>
+		<key>Id</key>
+		<integer>7</integer>
+		<key>Group</key>
+		<string>Depressive</string>
+		<key>Phrase</key>
+		<string>Loneliness, Unfulfillment</string>
+	</dict>
+	<dict>
+		<key>Id</key>
+		<integer>8</integer>
+		<key>Group</key>
+		<string>Embracive</string>
+		<key>Phrase</key>
+		<string>Love, Happiness</string>
+	</dict>
+	<dict>
+		<key>Id</key>
+		<integer>9</integer>
+		<key>Group</key>
+		<string>Depressive</string>
+		<key>Phrase</key>
+		<string>Sadness, Sorrow</string>
+	</dict>
+	<dict>
+		<key>Id</key>
+		<integer>10</integer>
+		<key>Group</key>
+		<string>Self-Control</string>
+		<key>Phrase</key>
+		<string>Self-Control, Practicality</string>
+	</dict>
+	<dict>
+		<key>Id</key>
+		<integer>11</integer>
+		<key>Group</key>
+		<string>Aggressive</string>
+		<key>Phrase</key>
+		<string>Supremacy, Arrogance</string>
+	</dict>
+</array>
+</plist>

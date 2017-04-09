@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomepageVC">
+            <connections>
+                <outlet property="earthView" destination="U6s-92-K1i" id="PpL-Yn-08h"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="ELP-0F-Y5Y">
+                    <rect key="frame" x="-1" y="-1" width="669" height="377"/>
+                </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="frameWithMascot" translatesAutoresizingMaskIntoConstraints="NO" id="BE0-An-0L3">
+                    <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a9M-TC-Bru" userLabel="telescopeButton">
+                    <rect key="frame" x="306" y="20" width="55" height="15"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="55" id="3oU-Il-4jA"/>
+                        <constraint firstAttribute="height" constant="15" id="ayS-5V-APm"/>
+                    </constraints>
+                    <state key="normal" image="upBigArrow"/>
+                    <connections>
+                        <action selector="tappedTelescope:" destination="-1" eventType="touchUpInside" id="BiK-mS-g0x"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rga-WU-5Wp" userLabel="intercomButton">
+                    <rect key="frame" x="632" y="131" width="15" height="55"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="15" id="Kae-Yk-ZOT"/>
+                        <constraint firstAttribute="height" constant="55" id="twf-oy-Qeg"/>
+                    </constraints>
+                    <state key="normal" image="rightBigArrow"/>
+                    <connections>
+                        <action selector="tappedIntercom:" destination="-1" eventType="touchUpInside" id="0oi-MM-kJS"/>
+                    </connections>
+                </button>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="earthBG" translatesAutoresizingMaskIntoConstraints="NO" id="U6s-92-K1i">
+                    <rect key="frame" x="40" y="30" width="270" height="270"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="270" id="VdS-ag-87V"/>
+                        <constraint firstAttribute="height" constant="270" id="iur-CW-kOQ"/>
+                    </constraints>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="Rga-WU-5Wp" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" constant="-29.5" id="KhZ-tv-aSD"/>
+                <constraint firstAttribute="trailing" secondItem="Rga-WU-5Wp" secondAttribute="trailing" constant="20" id="MRR-6S-d28"/>
+                <constraint firstItem="U6s-92-K1i" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="30" id="Rjq-WX-Fpj"/>
+                <constraint firstItem="U6s-92-K1i" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="40" id="b0S-Cm-rPy"/>
+                <constraint firstAttribute="bottom" secondItem="ELP-0F-Y5Y" secondAttribute="bottom" constant="-1" id="dOF-Uj-55S"/>
+                <constraint firstAttribute="trailing" secondItem="ELP-0F-Y5Y" secondAttribute="trailing" constant="-1" id="fYg-oM-1AO"/>
+                <constraint firstItem="a9M-TC-Bru" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="20" id="fdJ-lN-AlE"/>
+                <constraint firstItem="ELP-0F-Y5Y" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="-1" id="mWb-Pl-Al3"/>
+                <constraint firstItem="a9M-TC-Bru" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="pIb-I4-4v2"/>
+                <constraint firstItem="ELP-0F-Y5Y" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="-1" id="qzt-Jl-tPP"/>
+                <constraint firstItem="BE0-An-0L3" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="vqw-ps-HMF"/>
+                <constraint firstItem="BE0-An-0L3" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="vvm-pr-UzO"/>
+                <constraint firstAttribute="trailing" secondItem="BE0-An-0L3" secondAttribute="trailing" id="wqJ-6U-wed"/>
+                <constraint firstAttribute="bottom" secondItem="BE0-An-0L3" secondAttribute="bottom" id="yY0-cz-lbm"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="209" y="347"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="background" width="1334" height="750"/>
+        <image name="earthBG" width="567" height="567"/>
+        <image name="frameWithMascot" width="1334" height="750"/>
+        <image name="rightBigArrow" width="21" height="76"/>
+        <image name="upBigArrow" width="76" height="21"/>
+    </resources>
+</document>

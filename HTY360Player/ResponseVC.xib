@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ResponseVC">
+            <connections>
+                <outlet property="messageTable" destination="fVW-jZ-wE5" id="oim-o1-puZ"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="b5T-to-lnu">
+                    <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
+                </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="frameWithMascot" translatesAutoresizingMaskIntoConstraints="NO" id="1zC-Mt-GxK">
+                    <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ELa-VI-wPx">
+                    <rect key="frame" x="20" y="25" width="30" height="29"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="29" id="6mp-c4-6HX"/>
+                        <constraint firstAttribute="width" constant="30" id="Kfl-E8-GmO"/>
+                    </constraints>
+                    <state key="normal" image="exit2"/>
+                    <connections>
+                        <action selector="tappedExitBtn:" destination="-1" eventType="touchUpInside" id="gan-0a-gsC"/>
+                    </connections>
+                </button>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="fVW-jZ-wE5">
+                    <rect key="frame" x="120" y="65" width="427" height="225"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="RfA-4O-hge"/>
+                        <outlet property="delegate" destination="-1" id="QS1-Lu-CNd"/>
+                    </connections>
+                </tableView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="b5T-to-lnu" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="0bc-7f-ZnA"/>
+                <constraint firstItem="ELa-VI-wPx" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="0mY-wm-S8d"/>
+                <constraint firstAttribute="bottom" secondItem="b5T-to-lnu" secondAttribute="bottom" id="6Bo-ve-agb"/>
+                <constraint firstItem="ELa-VI-wPx" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="25" id="8s7-49-em8"/>
+                <constraint firstItem="b5T-to-lnu" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="C3t-ce-j6Q"/>
+                <constraint firstAttribute="trailing" secondItem="1zC-Mt-GxK" secondAttribute="trailing" id="CQV-uC-KVw"/>
+                <constraint firstAttribute="bottom" secondItem="1zC-Mt-GxK" secondAttribute="bottom" id="Gup-Ai-ycE"/>
+                <constraint firstItem="1zC-Mt-GxK" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Ikz-gA-iE6"/>
+                <constraint firstAttribute="trailing" secondItem="fVW-jZ-wE5" secondAttribute="trailing" constant="120" id="LI0-mQ-VlB"/>
+                <constraint firstItem="fVW-jZ-wE5" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="120" id="LfK-W6-eUQ"/>
+                <constraint firstAttribute="bottom" secondItem="fVW-jZ-wE5" secondAttribute="bottom" constant="85" id="Xnj-0E-QRQ"/>
+                <constraint firstItem="fVW-jZ-wE5" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="65" id="gj9-Wv-LoQ"/>
+                <constraint firstItem="1zC-Mt-GxK" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="uab-xg-740"/>
+                <constraint firstAttribute="trailing" secondItem="b5T-to-lnu" secondAttribute="trailing" id="yQQ-SZ-sTL"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="background" width="1334" height="750"/>
+        <image name="exit2" width="14" height="43"/>
+        <image name="frameWithMascot" width="1334" height="750"/>
+    </resources>
+</document>
