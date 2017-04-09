@@ -165,7 +165,7 @@
     [_earthBtn.imageView stopAnimating];
     
     EarthVC *earthVC=[[EarthVC alloc] initWithNibName:@"EarthVC" bundle:[NSBundle mainBundle]];
-    [self.navigationController pushViewController:earthVC animated:NO];
+    [self.navigationController pushViewController:earthVC animated:YES];
 }
 
 - (IBAction)tappedTelescope:(id)sender
@@ -176,7 +176,7 @@
     [_earthBtn.imageView stopAnimating];
     
     TelescopeVC *telescopeVC=[[TelescopeVC alloc] initWithNibName:@"TelescopeVC" bundle:[NSBundle mainBundle]];
-    [self.navigationController pushViewController:telescopeVC animated:NO];
+    [self.navigationController pushViewController:telescopeVC animated:YES];
     //[self presentViewController:telescopeVC animated:YES completion:nil];
 }
 
@@ -189,7 +189,7 @@
     
     IntercomVC *intercomVC=[[IntercomVC alloc] initWithNibName:@"IntercomVC" bundle:[NSBundle mainBundle]];
     //[self presentViewController:mailboxVC animated:YES completion:nil];
-    [self.navigationController pushViewController:intercomVC animated:NO];
+    [self.navigationController pushViewController:intercomVC animated:YES];
 }
 
 - (void)didReceiveMemoryWarning

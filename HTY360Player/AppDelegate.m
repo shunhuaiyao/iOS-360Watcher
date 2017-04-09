@@ -24,9 +24,13 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
     //建立ViewController
+    
+    HomepageVC *homepageVC = [[HomepageVC alloc] initWithNibName:@"HomepageVC" bundle:[NSBundle mainBundle]];
+
     EarthVC *earthVC = [[EarthVC alloc] initWithNibName:@"EarthVC" bundle:[NSBundle mainBundle]];
     earthVC.playTutorialAtFirst=NO;
-    NaviVC *naviVC=[[NaviVC alloc]initWithRootViewController:earthVC];
+    
+    NaviVC *naviVC=[[NaviVC alloc]initWithRootViewController:homepageVC];
     naviVC.navigationBar.hidden=YES;
     self.window.rootViewController = naviVC;
     [self.window makeKeyAndVisible];

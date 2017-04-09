@@ -94,13 +94,15 @@
     self.sright.hidden=YES;
     self.sleft.hidden=YES;*/
     
-    //if(_playTutorialAtFirst)
-    //{   //第一次登入播放影片
+    if(_playTutorialAtFirst)
+    {   //第一次登入播放影片
         _tutorialIsPlaying=YES;
         [self loadOpeningAnimation];
-    //}
-    //else
-        //_tutorialIsPlaying=NO;
+    }
+    else
+    {
+        _tutorialIsPlaying=NO;
+    }
     
     [self loadBGM];
     [self swipeSetting];
