@@ -13,6 +13,8 @@
 #import "ApiManager.h"
 #import "JsonRetriever.h"
 #import "MoodEvaluater.h"
+#import "btRippleButtton.h"
+#import "QuartzCore/QuartzCore.h"
 
 @interface TelescopeVC () <UIScrollViewDelegate, AVAudioRecorderDelegate>
 {
@@ -29,6 +31,8 @@
     NSTimer *_timer2; //控制探索按鈕自轉，令loading時長達5秒
     NSTimer *_timer3; //控制探索按鈕閃爍（按下之前）
     NSTimer *_timer4; //控制探索按鈕閃爍（按下之後，會發光）
+    NSTimer *_meterTimer; //repeat calling updateAudioMeter
+    BTRippleButtton *rippleButton1;
     
     UISwipeGestureRecognizer *_downSwiper;//滑動手勢控制
     
@@ -38,7 +42,7 @@
     BOOL exploring;
     BOOL _spinning;
     BOOL secondRecord;
-    
+    float _dbLevel;
     BOOL locked; //防止api二次呼叫，造成多重取用影片
     int calledCount;
     NSString *_distributedType;
@@ -71,6 +75,13 @@
     _hintLabel.userInteractionEnabled=YES;
     _triangleView.hidden=NO;
     [self triangleBling];
+    
+    // init ripple button
+    rippleButton1 = [[BTRippleButtton alloc]initWithImage:[UIImage imageNamed:nil] andFrame:CGRectMake(_microBtn.frame.origin.x + _microBtn.frame.size.width/2 - 75/2, _microBtn.frame.origin.y, 75, 75) andTarget:nil andID:self];
+    [rippleButton1 setRippeEffectEnabled:YES];
+    [rippleButton1 setRippleEffectWithColor:[UIColor colorWithRed:255/255.f green:255/255.f blue:255/255.f alpha:1]];
+    [self.view addSubview:rippleButton1];
+    [self.view bringSubviewToFront:_microBtn];
 }
 
 -(void) viewWillDisappear:(BOOL)animated
@@ -346,10 +357,32 @@
     [_myAudioPlayer stop];
     [self recordSetting];
     [_recorder record]; //開始錄音
+    [_recorder setMeteringEnabled:YES]; // for audio level metering
+    [self startAudioMetering];
     
     //更新進度條
     _progressView.hidden=NO;
     _timer =[NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateProgress) userInfo:nil repeats:YES];
+}
+
+// repeat calling updateAudioMeter
+- (void)startAudioMetering {
+    _meterTimer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(updateAudioMeter)userInfo:nil repeats:YES];
+}
+
+- (void)stopAudioMetering {
+    [_meterTimer invalidate];
+}
+
+- (void)updateAudioMeter {
+// audioRecorder being your instance of AVAudioRecorder
+    [_recorder updateMeters];
+    _dbLevel = [_recorder averagePowerForChannel:0];
+    NSLog(@"dB: %f\n", _dbLevel);
+    if (_dbLevel > -20) {
+        [rippleButton1 handleTap:nil];
+    }
+
 }
 
 -(void) updateProgress
@@ -414,6 +447,7 @@
     [_timer invalidate];
     _timer = nil;
     [_recorder stop];
+    [self stopAudioMetering];
     
     //旋轉效果
     _spinning=YES;
@@ -514,6 +548,9 @@
         
             [self recordSetting];
             [_recorder record]; //開始錄音
+            [_recorder setMeteringEnabled:YES]; // for audio level metering
+            [self startAudioMetering];
+
         
             //更新進度條
             _progressView.progress=0;

@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		20D244631EA123ED00DC7B88 /* btRippleButtton.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D244621EA123ED00DC7B88 /* btRippleButtton.m */; };
+		20D244651EA1244B00DC7B88 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20D244641EA1244B00DC7B88 /* QuartzCore.framework */; };
+		20FFB70A1E9DAE8900AD5C83 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED593D651E5264080004EC38 /* AVFoundation.framework */; };
 		405108A01BEF7E3C003BCFF7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4051089F1BEF7E3C003BCFF7 /* main.m */; };
 		405108A31BEF7E3C003BCFF7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 405108A21BEF7E3C003BCFF7 /* AppDelegate.m */; };
 		405108AE1BEF7E3C003BCFF7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 405108AC1BEF7E3C003BCFF7 /* LaunchScreen.storyboard */; };
@@ -76,6 +79,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		20D244611EA123ED00DC7B88 /* btRippleButtton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = btRippleButtton.h; sourceTree = "<group>"; };
+		20D244621EA123ED00DC7B88 /* btRippleButtton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = btRippleButtton.m; sourceTree = "<group>"; };
+		20D244641EA1244B00DC7B88 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		20FFB7081E9DAE5F00AD5C83 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		20FFB70B1E9DAE9A00AD5C83 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		4051089B1BEF7E3C003BCFF7 /* 360Project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 360Project.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4051089F1BEF7E3C003BCFF7 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		405108A11BEF7E3C003BCFF7 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -181,6 +189,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				20D244651EA1244B00DC7B88 /* QuartzCore.framework in Frameworks */,
+				20FFB70A1E9DAE8900AD5C83 /* AVFoundation.framework in Frameworks */,
 				ED593D741E52F4380004EC38 /* MobileCoreServices.framework in Frameworks */,
 				ED593D6E1E52918D0004EC38 /* AudioToolbox.framework in Frameworks */,
 				ED593D721E5299D80004EC38 /* libmp3lame.a in Frameworks */,
@@ -192,6 +202,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		20D244601EA1238400DC7B88 /* RippleEffects */ = {
+			isa = PBXGroup;
+			children = (
+				20D244611EA123ED00DC7B88 /* btRippleButtton.h */,
+				20D244621EA123ED00DC7B88 /* btRippleButtton.m */,
+			);
+			name = RippleEffects;
+			sourceTree = "<group>";
+		};
 		405108921BEF7E3C003BCFF7 = {
 			isa = PBXGroup;
 			children = (
@@ -212,6 +231,7 @@
 		4051089D1BEF7E3C003BCFF7 /* HTY360Player */ = {
 			isa = PBXGroup;
 			children = (
+				20D244601EA1238400DC7B88 /* RippleEffects */,
 				405108A11BEF7E3C003BCFF7 /* AppDelegate.h */,
 				405108A21BEF7E3C003BCFF7 /* AppDelegate.m */,
 				ED559A921DFE843100BF514D /* NaviVC.h */,
@@ -526,6 +546,9 @@
 		EDFCB0C41E3884990073E0C6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				20D244641EA1244B00DC7B88 /* QuartzCore.framework */,
+				20FFB70B1E9DAE9A00AD5C83 /* GLKit.framework */,
+				20FFB7081E9DAE5F00AD5C83 /* Accelerate.framework */,
 				EDF68F3B1E83353600F7B4D6 /* MediaPlayer.framework */,
 				ED593D731E52F4370004EC38 /* MobileCoreServices.framework */,
 				ED593D6D1E52918D0004EC38 /* AudioToolbox.framework */,
@@ -642,6 +665,7 @@
 				405108C91BEF85B3003BCFF7 /* HTYMenuVC.m in Sources */,
 				405108B71BEF7EDB003BCFF7 /* GLProgram.m in Sources */,
 				EDFCB0BA1E36CB970073E0C6 /* ReceiveVC.m in Sources */,
+				20D244631EA123ED00DC7B88 /* btRippleButtton.m in Sources */,
 				405108A31BEF7E3C003BCFF7 /* AppDelegate.m in Sources */,
 				ED7239161E5E7D55009CDAD9 /* PlistAccessManager.m in Sources */,
 				ED0199621E7F1176003EE5B2 /* MoodEvaluater.m in Sources */,
