@@ -8,6 +8,8 @@
 
 #import "IntercomVC.h"
 #import "HomepageVC.h"
+#import "TelescopeVC.h"
+#import "EarthVC.h"
 #import "NaviVC.h"
 #import "SendVC.h"
 #import "JsonRetriever.h"
@@ -214,7 +216,7 @@
     //HomepageVC *homeVC=[[HomepageVC alloc] initWithNibName:@"HomepageVC" bundle:[NSBundle mainBundle]];
     //[self presentViewController:homeVC animated:NO completion:nil];
     
-    [_naviVC popViewControllerAnimated:YES];
+    [_naviVC popViewControllerAnimated:NO];
 }
 
 - (IBAction)tappedSendBtn:(id)sender
@@ -222,6 +224,16 @@
     SendVC *sendVC=[[SendVC alloc] initWithNibName:@"SendVC" bundle:[NSBundle mainBundle]];
     sendVC.whetherReply=NO;
     [_naviVC pushViewController:sendVC animated:NO];
+}
+
+- (IBAction)tappedExploreBtn:(id)sender {
+    TelescopeVC *telescopeVC=[[TelescopeVC alloc] initWithNibName:@"TelescopeVC" bundle:[NSBundle mainBundle]];
+    [self.navigationController pushViewController:telescopeVC animated:NO];
+}
+
+- (IBAction)tappedMemoryBtn:(id)sender {
+    EarthVC *earthVC=[[EarthVC alloc] initWithNibName:@"EarthVC" bundle:[NSBundle mainBundle]];
+    [self.navigationController pushViewController:earthVC animated:NO];
 }
 
 - (IBAction)tappedRespondBtn:(id)sender

@@ -7,6 +7,8 @@
 //
 
 #import "TelescopeVC.h"
+#import "IntercomVC.h"
+#import "EarthVC.h"
 #import "ExtAudioConverter.h"
 #import "HTY360PlayerVC.h"
 #import "NaviVC.h"
@@ -252,10 +254,24 @@
     [self calculatePageByOffset];
 }
 
+- (IBAction)tappedExploreBtn:(id)sender {
+    
+}
+
+- (IBAction)tappedMemoryBtn:(id)sender {
+    EarthVC *earthVC=[[EarthVC alloc] initWithNibName:@"EarthVC" bundle:[NSBundle mainBundle]];
+    [self.navigationController pushViewController:earthVC animated:NO];
+}
+
+- (IBAction)tappedMessageBtn:(id)sender {
+    IntercomVC *intercomVC=[[IntercomVC alloc] initWithNibName:@"IntercomVC" bundle:[NSBundle mainBundle]];
+    [self.navigationController pushViewController:intercomVC animated:NO];
+}
+
 -(void) gotoEarth
 {
     NaviVC *naviVC=self.navigationController;
-    [naviVC popToRootViewControllerAnimated:YES];
+    [naviVC popToRootViewControllerAnimated:NO];
 }
 
 # pragma mark - 探索按鈕閃爍效果

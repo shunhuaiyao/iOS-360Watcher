@@ -37,7 +37,7 @@
     [super viewDidLoad];
     [self loadBGM];
     [self loadEarthAnimation];
-    
+    self.HintLabel.text = @"今天想要做什麼呢？NEIL";
 }
 
 -(void) puzzleTest
@@ -159,29 +159,61 @@
 
 - (IBAction)tappedEarth:(id)sender
 {
+    self.MemoryEffect.alpha = 0;
+    
     [_myAudioPlayer pause];
     _isPlayingMusic=NO;
     
     [_earthBtn.imageView stopAnimating];
     
     EarthVC *earthVC=[[EarthVC alloc] initWithNibName:@"EarthVC" bundle:[NSBundle mainBundle]];
-    [self.navigationController pushViewController:earthVC animated:YES];
+    [self.navigationController pushViewController:earthVC animated:NO];
+    
+}
+
+- (IBAction)tappedExploreEffect:(id)sender {
+    self.ExploreEffect.alpha = 1;
+}
+
+- (IBAction)tappedMessageEffect:(id)sender {
+    self.MessageEffect.alpha = 1;
+}
+
+- (IBAction)tappedMemoryEffect:(id)sender {
+    self.MemoryEffect.alpha = 1;
+}
+
+- (IBAction)ExitExploreEffect:(id)sender {
+    self.ExploreEffect.alpha = 0;
+}
+
+- (IBAction)ExitMessageEffect:(id)sender {
+    self.MessageEffect.alpha = 0;
+}
+
+- (IBAction)ExitMemoryEffect:(id)sender {
+    self.MemoryEffect.alpha = 0;
 }
 
 - (IBAction)tappedTelescope:(id)sender
 {
+    self.ExploreEffect.alpha = 0;
+
     [_myAudioPlayer pause];
     _isPlayingMusic=NO;
     
     [_earthBtn.imageView stopAnimating];
     
     TelescopeVC *telescopeVC=[[TelescopeVC alloc] initWithNibName:@"TelescopeVC" bundle:[NSBundle mainBundle]];
-    [self.navigationController pushViewController:telescopeVC animated:YES];
+    [self.navigationController pushViewController:telescopeVC animated:NO];
     //[self presentViewController:telescopeVC animated:YES completion:nil];
+    
 }
 
 - (IBAction)tappedIntercom:(id)sender
 {
+    self.MessageEffect.alpha = 0;
+
     //[_myAudioPlayer pause];
     //_isPlayingMusic=NO;
     
@@ -189,7 +221,8 @@
     
     IntercomVC *intercomVC=[[IntercomVC alloc] initWithNibName:@"IntercomVC" bundle:[NSBundle mainBundle]];
     //[self presentViewController:mailboxVC animated:YES completion:nil];
-    [self.navigationController pushViewController:intercomVC animated:YES];
+    [self.navigationController pushViewController:intercomVC animated:NO];
+    
 }
 
 - (void)didReceiveMemoryWarning

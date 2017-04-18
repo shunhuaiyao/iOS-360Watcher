@@ -27,5 +27,8 @@
 - (IBAction)tappedDownBtn:(id)sender;
 - (IBAction)tappedLeftBtn:(id)sender;
 - (IBAction)tappedRightBtn:(id)sender;
+- (IBAction)tappedExploreBtn:(id)sender;
+- (IBAction)tappedMemoryBtn:(id)sender;
+- (IBAction)tappedMessageBtn:(id)sender;
 
 @end

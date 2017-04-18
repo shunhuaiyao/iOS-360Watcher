@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1421" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -27,10 +27,10 @@
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="Iz6-K7-D2I">
                     <rect key="frame" x="-1" y="-1" width="669" height="377"/>
                 </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="frameWithMascot" translatesAutoresizingMaskIntoConstraints="NO" id="adm-1M-YfA">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="robotFrame" translatesAutoresizingMaskIntoConstraints="NO" id="adm-1M-YfA">
                     <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
                 </imageView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FLo-dG-8Eq">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FLo-dG-8Eq" userLabel="SendBtn">
                     <rect key="frame" x="544" y="27" width="30" height="28"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="28" id="kFh-EI-4Mp"/>
@@ -86,7 +86,7 @@
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="在這" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yd0-6m-4Xy">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="在這些訊息中，說不定有能與你交流的存在" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yd0-6m-4Xy">
                     <rect key="frame" x="140" y="321" width="467" height="50"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="50" id="c1b-Xx-vNu"/>
@@ -95,6 +95,44 @@
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tyy-1n-sI8" userLabel="MsgBtn">
+                    <rect key="frame" x="629" y="5" width="33" height="33"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="33" id="KVU-b1-3av"/>
+                        <constraint firstAttribute="width" constant="33" id="QHp-F1-WBr"/>
+                    </constraints>
+                    <state key="normal" image="MessageBtn"/>
+                </button>
+                <button opaque="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="742-ck-dQC" userLabel="MemBtn">
+                    <rect key="frame" x="586" y="2" width="38" height="38"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="38" id="HxT-Ks-7Q7"/>
+                        <constraint firstAttribute="height" constant="38" id="K68-eq-edy"/>
+                    </constraints>
+                    <state key="normal" image="MemoryBtn"/>
+                    <connections>
+                        <action selector="tappedMemoryBtn:" destination="-1" eventType="touchUpInside" id="Esv-11-x8i"/>
+                    </connections>
+                </button>
+                <button opaque="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X7A-hG-zNC" userLabel="ExploreBtn">
+                    <rect key="frame" x="546" y="2" width="38" height="38"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="38" id="133-Xc-aPf"/>
+                        <constraint firstAttribute="height" constant="38" id="opi-iQ-aEa"/>
+                    </constraints>
+                    <state key="normal" image="ExploreBtn"/>
+                    <connections>
+                        <action selector="tappedExploreBtn:" destination="-1" eventType="touchUpInside" id="640-RS-HIu"/>
+                    </connections>
+                </button>
+                <button opaque="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xTq-oW-XCo" userLabel="LangBtn">
+                    <rect key="frame" x="505" y="2" width="38" height="38"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="38" id="6Zd-VE-dHO"/>
+                        <constraint firstAttribute="width" constant="38" id="839-0m-kuJ"/>
+                    </constraints>
+                    <state key="normal" image="LanguageBtn"/>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
@@ -106,23 +144,31 @@
                 <constraint firstItem="V0V-2h-pKL" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="5SA-lK-8EA"/>
                 <constraint firstItem="Iz6-K7-D2I" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="-1" id="6N8-lH-1PG"/>
                 <constraint firstItem="mpS-nA-zPi" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="140" id="8oR-VU-95z"/>
+                <constraint firstItem="742-ck-dQC" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="2" id="8we-W5-0ZW"/>
                 <constraint firstItem="Iz6-K7-D2I" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="-1" id="B09-Bb-zRt"/>
                 <constraint firstItem="adm-1M-YfA" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="B6D-Np-wF7"/>
                 <constraint firstItem="PxT-we-OuJ" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Cla-CC-Yqh"/>
                 <constraint firstAttribute="trailing" secondItem="Iz6-K7-D2I" secondAttribute="trailing" constant="-1" id="EEs-mk-xaH"/>
+                <constraint firstAttribute="trailing" secondItem="tyy-1n-sI8" secondAttribute="trailing" constant="5" id="IFu-kx-YMJ"/>
+                <constraint firstAttribute="trailing" secondItem="742-ck-dQC" secondAttribute="trailing" constant="43" id="N0Z-Sh-oJ7"/>
                 <constraint firstAttribute="bottom" secondItem="adm-1M-YfA" secondAttribute="bottom" id="NBW-cQ-XpC"/>
                 <constraint firstItem="fYR-d0-nBn" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="25" id="Oxq-OB-c9a"/>
                 <constraint firstAttribute="trailing" secondItem="Yd0-6m-4Xy" secondAttribute="trailing" constant="60" id="PVm-lX-kSY"/>
                 <constraint firstItem="Yf5-Dp-gSi" firstAttribute="top" secondItem="mpS-nA-zPi" secondAttribute="bottom" constant="15" id="Vsy-ss-xRE"/>
                 <constraint firstAttribute="bottom" secondItem="Iz6-K7-D2I" secondAttribute="bottom" constant="-1" id="WbI-L4-jmu"/>
+                <constraint firstAttribute="trailing" secondItem="xTq-oW-XCo" secondAttribute="trailing" constant="124" id="Wfp-dX-I3F"/>
+                <constraint firstItem="X7A-hG-zNC" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="2" id="YJ4-QY-pBZ"/>
+                <constraint firstItem="xTq-oW-XCo" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="2" id="Zt9-7g-AGx"/>
                 <constraint firstItem="mpS-nA-zPi" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="65" id="d8F-9y-RzY"/>
                 <constraint firstItem="fYR-d0-nBn" firstAttribute="leading" secondItem="FLo-dG-8Eq" secondAttribute="trailing" constant="25" id="d9Q-0D-YBB"/>
                 <constraint firstItem="PxT-we-OuJ" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="efe-WT-mKd"/>
                 <constraint firstItem="Yf5-Dp-gSi" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="120" id="gzM-4z-50O"/>
+                <constraint firstItem="tyy-1n-sI8" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="5" id="j4x-vr-MoW"/>
                 <constraint firstAttribute="bottom" secondItem="Yd0-6m-4Xy" secondAttribute="bottom" constant="4" id="jLA-rX-6V2"/>
                 <constraint firstItem="adm-1M-YfA" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="k5f-0K-0Fw"/>
                 <constraint firstItem="V0V-2h-pKL" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="25" id="lbz-Q1-kax"/>
                 <constraint firstAttribute="trailing" secondItem="adm-1M-YfA" secondAttribute="trailing" id="nXf-cf-yoC"/>
+                <constraint firstAttribute="trailing" secondItem="X7A-hG-zNC" secondAttribute="trailing" constant="83" id="vxv-yZ-tV6"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="32.5" y="62.5"/>
@@ -137,9 +183,13 @@
         </button>
     </objects>
     <resources>
+        <image name="ExploreBtn" width="76" height="76"/>
+        <image name="LanguageBtn" width="76" height="76"/>
+        <image name="MemoryBtn" width="76" height="76"/>
+        <image name="MessageBtn" width="76" height="76"/>
         <image name="background" width="1334" height="750"/>
         <image name="exit2" width="14" height="43"/>
-        <image name="frameWithMascot" width="1334" height="750"/>
+        <image name="robotFrame" width="1335" height="754"/>
         <image name="sendIcon" width="224" height="193"/>
     </resources>
 </document>

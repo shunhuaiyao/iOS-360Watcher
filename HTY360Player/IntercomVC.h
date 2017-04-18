@@ -29,5 +29,7 @@
 - (IBAction)tappedExitBtn:(id)sender;
 - (IBAction)tappedSendBtn:(id)sender;
 
+- (IBAction)tappedExploreBtn:(id)sender;
+- (IBAction)tappedMemoryBtn:(id)sender;
 
 @end

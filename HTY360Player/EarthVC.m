@@ -619,15 +619,18 @@
     TelescopeVC *telescopeVC=[[TelescopeVC alloc] initWithNibName:@"TelescopeVC" bundle:[NSBundle mainBundle]];
     NaviVC *naviVC=self.navigationController;
     naviVC.pushDirection=1;
-    [naviVC pushViewController:telescopeVC animated:YES];
+    [naviVC pushViewController:telescopeVC animated:NO];
 }
 
 -(void) gotoIntercom
 {
+    [_myAudioPlayer pause];
+    _isPlayingMusic=NO;
+    
     IntercomVC *intercomVC=[[IntercomVC alloc] initWithNibName:@"IntercomVC" bundle:[NSBundle mainBundle]];
     NaviVC *naviVC=self.navigationController;
     naviVC.pushDirection=4;
-    [naviVC pushViewController:intercomVC animated:YES];
+    [naviVC pushViewController:intercomVC animated:NO];
 }
 
 - (IBAction)tappedUpBtn:(id)sender
@@ -637,6 +640,17 @@
 
 - (IBAction)tappedRightBtn:(id)sender
 {
+    [self gotoIntercom];
+}
+
+- (IBAction)tappedExploreBtn:(id)sender {
+    [self gotoTelescope];
+}
+
+- (IBAction)tappedMemoryBtn:(id)sender {
+}
+
+- (IBAction)tappedMessageBtn:(id)sender {
     [self gotoIntercom];
 }
 

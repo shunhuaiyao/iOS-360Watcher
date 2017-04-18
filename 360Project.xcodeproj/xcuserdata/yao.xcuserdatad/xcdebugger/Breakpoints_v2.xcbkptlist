@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "HTY360Player/TelescopeVC.m"
-            timestampString = "513922437.340067"
+            timestampString = "513976982.166454"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "371"
-            endingLineNumber = "371"
+            startingLineNumber = "387"
+            endingLineNumber = "387"
             landmarkName = "-startAudioMetering"
             landmarkType = "7">
          </BreakpointContent>
