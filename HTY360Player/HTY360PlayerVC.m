@@ -11,6 +11,7 @@
 #import "HomepageVC.h"
 #import "NaviVC.h"
 #import "CommentVC.h"
+#import "EarthVC.h"
 #import "MoodEvaluater.h"
 #import <AudioToolbox/AudioToolbox.h>
 
@@ -142,6 +143,16 @@ static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
     self.playerControlBackgroundView.hidden = YES;
     [self initializeTimer];
     [self swipeSetting];
+    
+    _YesLabel.userInteractionEnabled=NO;
+    UITapGestureRecognizer *YesTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(Exit360video)];
+    YesTap.numberOfTapsRequired = 1;
+    [self.YesLabel addGestureRecognizer:YesTap];
+    
+    _NoLabel.userInteractionEnabled=NO;
+    UITapGestureRecognizer *NoTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(Back360video)];
+    NoTap.numberOfTapsRequired = 1;
+    [self.NoLabel addGestureRecognizer:NoTap];
 }
 
 -(void) viewDidAppear:(BOOL)animated
@@ -236,22 +247,58 @@ static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
 
 - (IBAction)tappedExitBtn:(id)sender
 {
-    [self goBackToEarth];
+    [NSObject cancelPreviousPerformRequestsWithTarget:self];
+    [self pause];
+    
+    _robotFrame.alpha = 1;
+    _HintLabel.alpha = 1;
+    _NoLabel.alpha = 1;
+    _SlashLabel.alpha = 1;
+    _YesLabel.alpha = 1;
+    _YesLabel.userInteractionEnabled = YES;
+    _NoLabel.userInteractionEnabled = YES;
+    
 }
 
--(void) goBackToEarth
+-(void) Exit360video
 {
-    if(!_onlyForBrowse)
+    if(!_onlyForBrowse) //探索模式跳轉到詢問評價頁面
     {
-        //處於未觀看完畢的狀態，把字典加上"狀態的key值"後存入VideoRecord
-        [_currentVideoInfo setObject:[NSNumber numberWithBool:NO] forKey:@"FinishStatus"];
-        [_moodEvaluater storeVideoInfo:_currentVideoInfo withType:self.currentType];
-    }
+        CommentVC *commentVC = [[CommentVC alloc] initWithNibName:@"CommentVC" bundle:[NSBundle mainBundle]];
+        commentVC.currentVideoInfo=[self.currentVideoInfo copy];
+        commentVC.currentMood=[self.currentMood copy];
     
-    //返回首頁
-    NaviVC *naviVC=self.navigationController;
-    naviVC.pushDirection=1;
-    [naviVC popToRootViewControllerAnimated:YES];
+        for(NSString *key in [self.currentVideoInfo allKeys]) {
+            NSLog(@"video key %@ info %@", key, [self.currentVideoInfo objectForKey:key]);
+        }
+    
+        //處於未觀看完畢的狀態，把字典加上"狀態的key值"後存入VideoRecord
+        [_currentVideoInfo setObject:[NSNumber numberWithBool:YES] forKey:@"FinishStatus"];
+        [_moodEvaluater storeVideoInfo:_currentVideoInfo withType:self.currentType];
+    
+        NaviVC *naviVC=self.navigationController;
+        [naviVC pushViewController:commentVC animated:NO];
+    }
+    else{
+        EarthVC *earthVC = [[EarthVC alloc] initWithNibName:@"EarthVC" bundle:[NSBundle mainBundle]];
+        NaviVC *naviVC=self.navigationController;
+        [naviVC pushViewController:earthVC animated:NO];
+    }
+}
+
+-(void) Back360video
+{
+    _robotFrame.alpha = 0;
+    _HintLabel.alpha = 0;
+    _NoLabel.alpha = 0;
+    _SlashLabel.alpha = 0;
+    _YesLabel.alpha = 0;
+    _YesLabel.userInteractionEnabled = NO;
+    _NoLabel.userInteractionEnabled = NO;
+
+    
+    [NSObject cancelPreviousPerformRequestsWithTarget:self];
+    [self play];
 }
 
 -(void) swipeSetting
@@ -265,7 +312,7 @@ static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
 
 -(void) swipeHandler
 {
-     [self goBackToEarth];
+     //[self goBackToEarth];
 }
 
 - (IBAction)tappedModeBtn:(id)sender
@@ -293,6 +340,15 @@ static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
     
     //存入相簿中
     UIImageWriteToSavedPhotosAlbum(snapshotImage, self, nil, nil);
+}
+
+- (IBAction)tappedPauseBtn:(id)sender {
+    [NSObject cancelPreviousPerformRequestsWithTarget:self];
+    if ([self isPlaying]) {
+        [self pause];
+    } else {
+        [self play];
+    }
 }
 
 -(void) audioSetting
@@ -792,7 +848,11 @@ static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
         CommentVC *commentVC = [[CommentVC alloc] initWithNibName:@"CommentVC" bundle:[NSBundle mainBundle]];
         commentVC.currentVideoInfo=[self.currentVideoInfo copy];
         commentVC.currentMood=[self.currentMood copy];
-    
+        
+        for(NSString *key in [self.currentVideoInfo allKeys]) {
+            NSLog(@"done video key %@ info %@", key, [self.currentVideoInfo objectForKey:key]);
+        }
+        
         //處於未觀看完畢的狀態，把字典加上"狀態的key值"後存入VideoRecord
         [_currentVideoInfo setObject:[NSNumber numberWithBool:YES] forKey:@"FinishStatus"];
         [_moodEvaluater storeVideoInfo:_currentVideoInfo withType:self.currentType];
@@ -803,9 +863,10 @@ static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
     }
     else //瀏覽模式直接返回
     {
-        //返回首頁
+        //返回memory
+        EarthVC *earthVC = [[EarthVC alloc] initWithNibName:@"EarthVC" bundle:[NSBundle mainBundle]];
         NaviVC *naviVC=self.navigationController;
-        [naviVC popToRootViewControllerAnimated:YES];
+        [naviVC pushViewController:earthVC animated:NO];
     }
 }
 

@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "HomepageVC.h"
+#import "CommentVC.h"
 #import "NaviVC.h"
 #import "PlistAccessManager.h"
 #import "EarthVC.h"
@@ -24,6 +25,7 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
     //建立ViewController
+//    CommentVC *commentVC = [[CommentVC alloc] initWithNibName:@"CommentVC" bundle:[NSBundle mainBundle]];
     
     HomepageVC *homepageVC = [[HomepageVC alloc] initWithNibName:@"HomepageVC" bundle:[NSBundle mainBundle]];
 

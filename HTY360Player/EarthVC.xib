@@ -75,28 +75,6 @@
                         <constraint firstAttribute="height" constant="10" id="vGm-4D-AcL"/>
                     </constraints>
                 </imageView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PSw-o2-td2">
-                    <rect key="frame" x="306" y="20" width="55" height="15"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="15" id="JP4-7l-kcz"/>
-                        <constraint firstAttribute="width" constant="55" id="uPH-9h-Nqv"/>
-                    </constraints>
-                    <state key="normal" image="upBigArrow"/>
-                    <connections>
-                        <action selector="tappedUpBtn:" destination="-1" eventType="touchUpInside" id="fHr-dr-3R1"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IZf-4k-oIO">
-                    <rect key="frame" x="632" y="160" width="15" height="55"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="55" id="8re-Kv-NcI"/>
-                        <constraint firstAttribute="width" constant="15" id="c79-Ns-q23"/>
-                    </constraints>
-                    <state key="normal" image="rightBigArrow"/>
-                    <connections>
-                        <action selector="tappedRightBtn:" destination="-1" eventType="touchUpInside" id="Blg-9r-wsa"/>
-                    </connections>
-                </button>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="H2A-zF-UCz">
                     <rect key="frame" x="377" y="115" width="190" height="125"/>
                     <constraints>
@@ -197,13 +175,9 @@
                 <constraint firstItem="P3J-IQ-OWN" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="7ct-Z6-6Af"/>
                 <constraint firstItem="Mzg-Km-6JD" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="2" id="7kV-PA-Mam"/>
                 <constraint firstAttribute="trailing" secondItem="229-7U-Yf5" secondAttribute="trailing" constant="5" id="B8u-mo-vjE"/>
-                <constraint firstItem="PSw-o2-td2" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="GBb-An-zBY"/>
                 <constraint firstAttribute="trailing" secondItem="kYH-uD-glh" secondAttribute="trailing" constant="10" id="Gum-JX-Pgm"/>
-                <constraint firstItem="IZf-4k-oIO" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="160" id="NYP-4C-MOM"/>
-                <constraint firstItem="PSw-o2-td2" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="20" id="Nls-jI-AMz"/>
                 <constraint firstItem="0B1-2I-FVF" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="OqA-AA-UcC"/>
                 <constraint firstAttribute="trailing" secondItem="Mzg-Km-6JD" secondAttribute="trailing" constant="43" id="QaE-Y2-ubK"/>
-                <constraint firstAttribute="trailing" secondItem="IZf-4k-oIO" secondAttribute="trailing" constant="20" id="RaN-RO-dec"/>
                 <constraint firstItem="6Mf-kE-zqf" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" id="Rtn-yj-zGe"/>
                 <constraint firstItem="E3U-rB-0tP" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="2" id="TES-N8-hmG"/>
                 <constraint firstItem="H2A-zF-UCz" firstAttribute="top" secondItem="LwL-G5-0za" secondAttribute="bottom" constant="7" id="Ywh-cR-1OG"/>
@@ -239,9 +213,7 @@
         <image name="background" width="1334" height="750"/>
         <image name="earthBG" width="647" height="647"/>
         <image name="playBtn" width="433" height="414"/>
-        <image name="rightBigArrow" width="21" height="76"/>
         <image name="robotFrame" width="1335" height="754"/>
         <image name="triangle_25" width="70" height="47"/>
-        <image name="upBigArrow" width="76" height="21"/>
     </resources>
 </document>

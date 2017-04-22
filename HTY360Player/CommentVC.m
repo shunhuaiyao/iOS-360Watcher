@@ -7,11 +7,14 @@
 //
 
 #import "CommentVC.h"
+#import "EarthVC.h"
+#import "IntercomVC.h"
 #import "NaviVC.h"
 
 @interface CommentVC ()
 {
     NSTimer *_timer;
+    BOOL hastappedStar;
 }
 @end
 
@@ -42,20 +45,23 @@
     _timer=[NSTimer scheduledTimerWithTimeInterval:2.2 target:self selector:@selector(decideIntervalByTimer:) userInfo:nil repeats:YES];
     
     //吉祥物詢問對話
-    _hintLabel.text=@"你喜歡這個記憶帶給你的感受嗎？";
+    _hintLabel.text=@"本次收集到的回憶有這些，依照你的喜好為他們標記吧";
+    hastappedStar = false;
     
     //第一個回答選項
-    _option1.text=@"不錯啊";
+    _option1.text=@"Yes";
     _option1.tag=1;
-    _option1.userInteractionEnabled=YES;
+    _option1.userInteractionEnabled=NO;
+    _option1.alpha = 0;
     UITapGestureRecognizer *option1Tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(chooseOption1)];
     option1Tap.numberOfTapsRequired = 1;
     [self.option1 addGestureRecognizer:option1Tap];
-    
+    _slash.alpha = 0;
     //第二個回答選項
-    _option2.text=@"沒特別感覺";
+    _option2.text=@"No";
     _option2.tag=2;
-    _option2.userInteractionEnabled=YES;
+    _option2.userInteractionEnabled=NO;
+    _option2.alpha = 0;
     UITapGestureRecognizer *option2Tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(chooseOption2)];
     option2Tap.numberOfTapsRequired = 1;
     [self.option2 addGestureRecognizer:option2Tap];
@@ -87,12 +93,19 @@
 
 -(void) chooseOption1 //正面評價
 {
-    [self endingWord];
-}
+    EarthVC *earthVC=[[EarthVC alloc] initWithNibName:@"EarthVC" bundle:[NSBundle mainBundle]];
+    [self.navigationController pushViewController:earthVC animated:NO];}
 
 -(void) chooseOption2 //負面評價
 {
-    [self endingWord];
+    //[self endingWord];
+    
+    _hintLabel.text=@"本次收集到的回憶有這些，依照你的喜好為他們標記吧";
+    _option1.alpha = 0;
+    _option1.userInteractionEnabled = NO;
+    _slash.alpha = 0;
+    _option2.alpha = 0;
+    _option2.userInteractionEnabled = NO;
 }
 
 -(void) endingWord
@@ -184,4 +197,92 @@
     }
 }
 
+- (IBAction)tappedMessageBtn:(id)sender {
+    if (!hastappedStar) {
+        _hintLabel.text=@"確定要跳過評價嗎？";
+        _option1.alpha = 1;
+        _option1.userInteractionEnabled = YES;
+        _slash.alpha = 1;
+        _option2.alpha = 1;
+        _option2.userInteractionEnabled = YES;
+    }
+    else{
+        IntercomVC *intercomVC=[[IntercomVC alloc] initWithNibName:@"IntercomVC" bundle:[NSBundle mainBundle]];
+        [self.navigationController pushViewController:intercomVC animated:NO];
+    }
+    
+}
+
+- (IBAction)tappedMemoryBtn:(id)sender {
+    if (!hastappedStar) {
+        _hintLabel.text=@"確定要跳過評價嗎？";
+        _option1.alpha = 1;
+        _option1.userInteractionEnabled = YES;
+        _slash.alpha = 1;
+        _option2.alpha = 1;
+        _option2.userInteractionEnabled = YES;
+    }
+    else{
+        EarthVC *earthVC=[[EarthVC alloc] initWithNibName:@"EarthVC" bundle:[NSBundle mainBundle]];
+        [self.navigationController pushViewController:earthVC animated:NO];
+    }
+}
+
+- (IBAction)StarBtn1:(id)sender {
+    self.StarBtn1UI.alpha = 1;
+    self.StarBtn2UI.alpha = 0.5;
+    self.StarBtn3UI.alpha = 0.5;
+    self.StarBtn4UI.alpha = 0.5;
+    self.StarBtn5UI.alpha = 0.5;
+    self.NextBtnUI.alpha = 1;
+}
+- (IBAction)StarBtn2:(id)sender {
+    self.StarBtn1UI.alpha = 1;
+    self.StarBtn2UI.alpha = 1;
+    self.StarBtn3UI.alpha = 0.5;
+    self.StarBtn4UI.alpha = 0.5;
+    self.StarBtn5UI.alpha = 0.5;
+    self.NextBtnUI.alpha = 1;
+    hastappedStar = true;
+}
+- (IBAction)StarBtn3:(id)sender {
+    self.StarBtn1UI.alpha = 1;
+    self.StarBtn2UI.alpha = 1;
+    self.StarBtn3UI.alpha = 1;
+    self.StarBtn4UI.alpha = 0.5;
+    self.StarBtn5UI.alpha = 0.5;
+    self.NextBtnUI.alpha = 1;
+    hastappedStar = true;
+
+}
+- (IBAction)StarBtn4:(id)sender {
+    self.StarBtn1UI.alpha = 1;
+    self.StarBtn2UI.alpha = 1;
+    self.StarBtn3UI.alpha = 1;
+    self.StarBtn4UI.alpha = 1;
+    self.StarBtn5UI.alpha = 0.5;
+    self.NextBtnUI.alpha = 1;
+    hastappedStar = true;
+
+}
+- (IBAction)StarBtn5:(id)sender {
+    self.StarBtn1UI.alpha = 1;
+    self.StarBtn2UI.alpha = 1;
+    self.StarBtn3UI.alpha = 1;
+    self.StarBtn4UI.alpha = 1;
+    self.StarBtn5UI.alpha = 1;
+    self.NextBtnUI.alpha = 1;
+    hastappedStar = true;
+
+}
+- (IBAction)NextBtn:(id)sender {
+    if (!hastappedStar) {
+        _hintLabel.text=@"確定要跳過評價嗎？";
+        _option1.alpha = 1;
+        _option1.userInteractionEnabled = YES;
+        _slash.alpha = 1;
+        _option2.alpha = 1;
+        _option2.userInteractionEnabled = YES;
+    }
+}
 @end

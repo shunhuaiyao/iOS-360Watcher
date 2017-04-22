@@ -31,6 +31,12 @@
 - (IBAction)tappedExitBtn:(id)sender;
 - (IBAction)tappedModeBtn:(id)sender;
 - (IBAction)tappedCameraBtn:(id)sender;
+- (IBAction)tappedPauseBtn:(id)sender;
+@property (weak, nonatomic) IBOutlet UIImageView *robotFrame;
+@property (weak, nonatomic) IBOutlet UILabel *HintLabel;
+@property (weak, nonatomic) IBOutlet UILabel *YesLabel;
+@property (weak, nonatomic) IBOutlet UILabel *SlashLabel;
+@property (weak, nonatomic) IBOutlet UILabel *NoLabel;
 
 
 @end

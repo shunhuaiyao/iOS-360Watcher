@@ -188,7 +188,8 @@
         NSLog(@"reset puzzle");
     
         //清除videoRecord.plist的紀錄
-        [_plistManager saveAndCoverArray:[NSArray array] intoPlist:@"VideoRecord" underFolder:@"watchtower"];
+        BOOL checkplist = [_plistManager saveAndCoverArray:[NSArray array] intoPlist:@"VideoRecord" underFolder:@"watchtower"];
+        NSLog(@"check plist : %d",checkplist);
     
         //透過puzzleArray把現有的拼圖給移除
         [self clearAllPuzzle];
@@ -600,7 +601,7 @@
     _isPlayingMusic=NO;
     
     NaviVC *naviVC=self.navigationController;
-    [naviVC pushViewController:_360Player animated:YES];
+    [naviVC pushViewController:_360Player animated:NO];
     
     _hintLabel.tag=1;
     _hintLabel.text=@"歡迎回來，我一直在等你呢";

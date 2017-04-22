@@ -895,9 +895,8 @@
 - (void)launchVideoWithURL:(NSString*)videoURL
 {
     NSURL *url = [[NSURL alloc] initWithString:videoURL];
-    _videoController = [[HTY360PlayerVC alloc] initWithNibName:@"HTY360PlayerVC"
-                                                                       bundle:nil
-                                                                        url:url];
+    _videoController = [[HTY360PlayerVC alloc] initWithNibName:@"HTY360PlayerVC" bundle:nil url:url];
+    
     //傳各種資訊給下一個控制器
     _videoController.onlyForBrowse=NO; //探索模式
     _videoController.currentMood=_moodGroup;
