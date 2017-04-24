@@ -27,6 +27,9 @@
     
     [self hintLabelTapSetting];
     
+    NSLog(@"PuzzleNum: %@!!!!!", [_currentVideoInfo objectForKey:@"PuzzleNum"]);
+    [[NSUserDefaults standardUserDefaults] setObject:_currentVideoInfo forKey:[NSString stringWithFormat:@"%@", [_currentVideoInfo objectForKey:@"PuzzleNum"]]];
+
     //獲取標題及經緯度
     _titleLabel.text=[_currentVideoInfo objectForKey:@"Title"];
     _titleLabel.font = [UIFont fontWithName:@"CourierNewPS-BoldMT" size:23.0f];
@@ -91,12 +94,13 @@
     [naviVC popToRootViewControllerAnimated:YES];
 }
 
--(void) chooseOption1 //正面評價
+-(void) chooseOption1 //跳過評價
 {
+    [self saveStars:@"0"];
     EarthVC *earthVC=[[EarthVC alloc] initWithNibName:@"EarthVC" bundle:[NSBundle mainBundle]];
     [self.navigationController pushViewController:earthVC animated:NO];}
 
--(void) chooseOption2 //負面評價
+-(void) chooseOption2 //返回評價
 {
     //[self endingWord];
     
@@ -197,6 +201,18 @@
     }
 }
 
+- (void) saveStars:(NSString *) star{
+    NSMutableDictionary *mutableRetrievedDictionary = [[[NSUserDefaults standardUserDefaults] objectForKey:[NSString stringWithFormat:@"%@", [_currentVideoInfo objectForKey:@"PuzzleNum"]]] mutableCopy];
+    NSLog(@"Before STAR: %@!!", mutableRetrievedDictionary);
+    
+    [mutableRetrievedDictionary setObject:star forKey:@"star"];
+    
+    [[NSUserDefaults standardUserDefaults] setObject:mutableRetrievedDictionary forKey:[NSString stringWithFormat:@"%@", [mutableRetrievedDictionary objectForKey:@"PuzzleNum"]]];
+    
+    NSLog(@"STAR: %@!!", mutableRetrievedDictionary);
+
+}
+
 - (IBAction)tappedMessageBtn:(id)sender {
     if (!hastappedStar) {
         _hintLabel.text=@"確定要跳過評價嗎？";
@@ -235,6 +251,8 @@
     self.StarBtn4UI.alpha = 0.5;
     self.StarBtn5UI.alpha = 0.5;
     self.NextBtnUI.alpha = 1;
+    hastappedStar = true;
+    [self saveStars:@"1"];
 }
 - (IBAction)StarBtn2:(id)sender {
     self.StarBtn1UI.alpha = 1;
@@ -244,6 +262,7 @@
     self.StarBtn5UI.alpha = 0.5;
     self.NextBtnUI.alpha = 1;
     hastappedStar = true;
+    [self saveStars:@"2"];
 }
 - (IBAction)StarBtn3:(id)sender {
     self.StarBtn1UI.alpha = 1;
@@ -253,7 +272,7 @@
     self.StarBtn5UI.alpha = 0.5;
     self.NextBtnUI.alpha = 1;
     hastappedStar = true;
-
+    [self saveStars:@"3"];
 }
 - (IBAction)StarBtn4:(id)sender {
     self.StarBtn1UI.alpha = 1;
@@ -263,6 +282,7 @@
     self.StarBtn5UI.alpha = 0.5;
     self.NextBtnUI.alpha = 1;
     hastappedStar = true;
+    [self saveStars:@"4"];
 
 }
 - (IBAction)StarBtn5:(id)sender {
@@ -273,6 +293,7 @@
     self.StarBtn5UI.alpha = 1;
     self.NextBtnUI.alpha = 1;
     hastappedStar = true;
+    [self saveStars:@"5"];
 
 }
 - (IBAction)NextBtn:(id)sender {
@@ -283,6 +304,10 @@
         _slash.alpha = 1;
         _option2.alpha = 1;
         _option2.userInteractionEnabled = YES;
+    }
+    else{
+        EarthVC *earthVC=[[EarthVC alloc] initWithNibName:@"EarthVC" bundle:[NSBundle mainBundle]];
+        [self.navigationController pushViewController:earthVC animated:NO];
     }
 }
 @end

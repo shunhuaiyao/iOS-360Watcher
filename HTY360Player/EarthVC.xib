@@ -18,7 +18,6 @@
                 <outlet property="mapView" destination="KBX-7Y-SOW" id="oJw-Sx-xa0"/>
                 <outlet property="mascotView" destination="P3J-IQ-OWN" id="skJ-Oe-6hh"/>
                 <outlet property="scrollView" destination="QcS-36-PbR" id="OJE-SA-IEJ"/>
-                <outlet property="telescopeBtn" destination="A1z-e3-tJP" id="7ej-nf-zeG"/>
                 <outlet property="thumbnailView" destination="H2A-zF-UCz" id="0YA-xC-J7Q"/>
                 <outlet property="titleLabel" destination="Qvn-0H-7M2" id="fUs-v2-AoW"/>
                 <outlet property="triangleView" destination="kYH-uD-glh" id="Q4x-In-5JW"/>
@@ -111,19 +110,6 @@
                         <constraint firstAttribute="height" constant="100" id="m0u-tq-4gM"/>
                     </constraints>
                 </imageView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A1z-e3-tJP">
-                    <rect key="frame" x="455" y="255" width="35" height="35"/>
-                    <constraints>
-                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="30" id="0Ft-3n-d5a"/>
-                        <constraint firstAttribute="width" constant="35" id="aCp-dM-0hZ"/>
-                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="iOl-GD-Q7l"/>
-                        <constraint firstAttribute="height" constant="35" id="lbx-AU-1fm"/>
-                    </constraints>
-                    <state key="normal" title="Button" image="playBtn"/>
-                    <connections>
-                        <action selector="tappedTelescopeBtn:" destination="-1" eventType="touchUpInside" id="M8E-Li-Xs0"/>
-                    </connections>
-                </button>
                 <button opaque="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="229-7U-Yf5" userLabel="MesBtn">
                     <rect key="frame" x="629" y="5" width="33" height="33"/>
                     <constraints>
@@ -190,14 +176,12 @@
                 <constraint firstAttribute="trailing" secondItem="nhY-ok-LD4" secondAttribute="trailing" constant="83" id="eWs-AF-SAY"/>
                 <constraint firstAttribute="bottom" secondItem="kYH-uD-glh" secondAttribute="bottom" constant="10" id="l6g-dV-NfC"/>
                 <constraint firstAttribute="bottom" secondItem="v2C-mC-ktf" secondAttribute="bottom" constant="3" id="mbS-bc-dd0"/>
-                <constraint firstItem="A1z-e3-tJP" firstAttribute="top" secondItem="H2A-zF-UCz" secondAttribute="bottom" constant="15" id="nMR-SY-Iys"/>
                 <constraint firstAttribute="trailing" secondItem="E3U-rB-0tP" secondAttribute="trailing" constant="124" id="o69-3N-7z1"/>
                 <constraint firstItem="LwL-G5-0za" firstAttribute="top" secondItem="Qvn-0H-7M2" secondAttribute="bottom" constant="7" id="oPs-Gm-5vc"/>
                 <constraint firstAttribute="bottom" secondItem="0B1-2I-FVF" secondAttribute="bottom" id="qeu-kk-42q"/>
                 <constraint firstAttribute="trailing" secondItem="0B1-2I-FVF" secondAttribute="trailing" id="r5V-Uq-oQc"/>
                 <constraint firstItem="QcS-36-PbR" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="r5b-gr-Wp2"/>
                 <constraint firstAttribute="bottom" secondItem="P3J-IQ-OWN" secondAttribute="bottom" constant="-5" id="rge-7B-qk3"/>
-                <constraint firstItem="A1z-e3-tJP" firstAttribute="centerX" secondItem="H2A-zF-UCz" secondAttribute="centerX" id="sFR-iR-sAQ"/>
                 <constraint firstItem="LwL-G5-0za" firstAttribute="centerX" secondItem="H2A-zF-UCz" secondAttribute="centerX" id="tAU-Wq-JxK"/>
                 <constraint firstAttribute="trailing" secondItem="v2C-mC-ktf" secondAttribute="trailing" constant="66" id="zZf-Xk-DCN"/>
             </constraints>
@@ -212,7 +196,6 @@
         <image name="MessageBtn" width="76" height="76"/>
         <image name="background" width="1334" height="750"/>
         <image name="earthBG" width="647" height="647"/>
-        <image name="playBtn" width="433" height="414"/>
         <image name="robotFrame" width="1335" height="754"/>
         <image name="triangle_25" width="70" height="47"/>
     </resources>

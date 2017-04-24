@@ -85,10 +85,14 @@
     self.scrollView.contentSize = self.contentView.frame.size;
     self.scrollView.scrollEnabled=YES;
     
+    UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tappedTelescopeBtn)];
+    singleTap.numberOfTapsRequired = 1;
+    [self.thumbnailView setUserInteractionEnabled:NO];
+    [self.thumbnailView addGestureRecognizer:singleTap];
     self.thumbnailView.hidden=YES;
+
     self.titleLabel.hidden=YES;
     self.locationLabel.hidden=YES;
-    self.telescopeBtn.hidden=YES;
     /*self.sup.hidden=YES;
     self.sdown.hidden=YES;
     self.sright.hidden=YES;
@@ -129,15 +133,14 @@
     [self updatePuzzle];
     
     //隱藏詳細影片資訊，恢復瀏覽按鈕可互動
-    _telescopeBtn.enabled=YES;
     self.thumbnailView.hidden=YES;
     self.titleLabel.hidden=YES;
     self.locationLabel.hidden=YES;
-    self.telescopeBtn.hidden=YES;
     
     if(!_isPlayingMusic && !_tutorialIsPlaying)
     {
         [_myAudioPlayer play];
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"playBGM"];
         _isPlayingMusic=YES;
         _playingUFOAnimation=YES;
     }
@@ -150,6 +153,11 @@
 {
     //不讓UFO持續出現
     //_playingUFOAnimation=NO;
+}
+
+-(void) viewWillDisappear:(BOOL)animated
+{
+    [_myAudioPlayer stop];
 }
 
 
@@ -540,34 +548,39 @@
         _moodEvaluater=[[MoodEvaluater alloc]init];
         NSDictionary *dict=[_moodEvaluater getVideoInfoByPuzzleNum:_selectedId];
         
+        NSMutableDictionary *mutableRetrievedDictionary = [[[NSUserDefaults standardUserDefaults] objectForKey:[NSString stringWithFormat:@"%ld", (long)button.tag]] mutableCopy];
+        
         //獲取標題及經緯度
-        _titleLabel.text=[dict objectForKey:@"Title"];
+        _titleLabel.text=[mutableRetrievedDictionary objectForKey:@"Title"];
         _titleLabel.font = [UIFont fontWithName:@"CourierNewPS-BoldMT" size:20.0f];
-        _locationLabel.text=[dict objectForKey:@"Location"];
+        _locationLabel.text=[mutableRetrievedDictionary objectForKey:@"Location"];
         _locationLabel.font = [UIFont fontWithName:@"CourierNewPS-BoldMT" size:14.0f];
         
         //設定縮圖
-        NSURL *url = [NSURL URLWithString:[dict objectForKey:@"ThumbnailURL"]];
+        NSURL *url = [NSURL URLWithString:[mutableRetrievedDictionary objectForKey:@"ThumbnailURL"]];
         NSData *data = [NSData dataWithContentsOfURL:url];
         UIImage *img = [[UIImage alloc] initWithData:data];
         _thumbnailView.image=img;
         
         //設置影片ID及網址
-        _chosenVideoId=[dict objectForKey:@"ID"];
-        _chosenVideoURL=[dict objectForKey:@"VideoURL"];
+        _chosenVideoId=[mutableRetrievedDictionary objectForKey:@"ID"];
+        _chosenVideoURL=[mutableRetrievedDictionary objectForKey:@"VideoURL"];
         
         //原本隱藏轉為顯示
         _thumbnailView.hidden=NO;
+        [self.thumbnailView setUserInteractionEnabled:YES];
         _titleLabel.hidden=NO;
         _locationLabel.hidden=NO;
-        _telescopeBtn.hidden=NO;
+        
+        //star
+        NSLog(@"star: %@~~", [mutableRetrievedDictionary objectForKey:@"star"]);
     });
 }
 
-- (IBAction)tappedTelescopeBtn:(id)sender
+- (void)tappedTelescopeBtn
 {
     //禁止反覆按到
-    _telescopeBtn.enabled=NO;
+    [self.thumbnailView setUserInteractionEnabled:NO];
     
     //將音效檔轉換成SystemSoundID型態
     AudioServicesCreateSystemSoundID((__bridge CFURLRef)_sound_url2, &soundID);
@@ -614,9 +627,9 @@
 
 -(void) gotoTelescope
 {
-    [_myAudioPlayer pause];
+    [_myAudioPlayer stop];
     _isPlayingMusic=NO;
-    
+    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"playBGM"];
     TelescopeVC *telescopeVC=[[TelescopeVC alloc] initWithNibName:@"TelescopeVC" bundle:[NSBundle mainBundle]];
     NaviVC *naviVC=self.navigationController;
     naviVC.pushDirection=1;
@@ -625,9 +638,9 @@
 
 -(void) gotoIntercom
 {
-    [_myAudioPlayer pause];
-    _isPlayingMusic=NO;
-    
+    //[_myAudioPlayer pause];
+    //_isPlayingMusic=NO;
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"playBGM"];
     IntercomVC *intercomVC=[[IntercomVC alloc] initWithNibName:@"IntercomVC" bundle:[NSBundle mainBundle]];
     NaviVC *naviVC=self.navigationController;
     naviVC.pushDirection=4;

@@ -273,7 +273,7 @@ static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
         }
     
         //處於未觀看完畢的狀態，把字典加上"狀態的key值"後存入VideoRecord
-        [_currentVideoInfo setObject:[NSNumber numberWithBool:YES] forKey:@"FinishStatus"];
+        [_currentVideoInfo setObject:[NSNumber numberWithBool:NO] forKey:@"FinishStatus"];
         [_moodEvaluater storeVideoInfo:_currentVideoInfo withType:self.currentType];
     
         NaviVC *naviVC=self.navigationController;

@@ -21,8 +21,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *hintLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *triangleView;
 @property (weak, nonatomic) IBOutlet UIImageView *mascotView;
-@property (weak, nonatomic) IBOutlet UIButton *telescopeBtn;
-- (IBAction)tappedTelescopeBtn:(id)sender;
 
 
 

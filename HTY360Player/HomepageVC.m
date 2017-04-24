@@ -110,7 +110,9 @@
 
 -(void)loadBGM
 {
-    NSString *soundFilePath = [NSString stringWithFormat:@"%@/Hotel.mp3", [[NSBundle mainBundle] resourcePath]];
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"playBGM"];
+    
+    NSString *soundFilePath = [NSString stringWithFormat:@"%@/BGM.mp3", [[NSBundle mainBundle] resourcePath]];
     NSURL *soundFileURL = [NSURL fileURLWithPath:soundFilePath];
     
     _myAudioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:soundFileURL error:nil];
@@ -199,9 +201,9 @@
 {
     self.ExploreEffect.alpha = 0;
 
-    [_myAudioPlayer pause];
+    [_myAudioPlayer stop];
     _isPlayingMusic=NO;
-    
+    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"playBGM"];
     [_earthBtn.imageView stopAnimating];
     
     TelescopeVC *telescopeVC=[[TelescopeVC alloc] initWithNibName:@"TelescopeVC" bundle:[NSBundle mainBundle]];
@@ -214,8 +216,8 @@
 {
     self.MessageEffect.alpha = 0;
 
-    //[_myAudioPlayer pause];
-    //_isPlayingMusic=NO;
+    [_myAudioPlayer stop];
+    _isPlayingMusic=NO;
     
     [_earthBtn.imageView stopAnimating];
     

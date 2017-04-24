@@ -24,6 +24,10 @@
     JsonRetriever *jsonRetriever;
     BOOL getNewMessage;
     BOOL alreadyHave;
+    
+    //音樂播放相關
+    BOOL _isPlayingMusic;
+    AVAudioPlayer *_myAudioPlayer;
 }
 @end
 
@@ -89,6 +93,8 @@
         _responseBtn.enabled=YES;
         _responseBtn.alpha=1;
     }*/
+    
+    [self loadBGM];
 }
 
 -(void) viewDidAppear:(BOOL)animated
@@ -116,6 +122,24 @@
                                 _whetherInspect=NO;
                              }}];
     }
+}
+
+-(void) viewWillDisappear:(BOOL)animated
+{
+    [_myAudioPlayer stop];
+}
+
+-(void)loadBGM
+{
+    NSString *soundFilePath = [NSString stringWithFormat:@"%@/BGM.mp3", [[NSBundle mainBundle] resourcePath]];
+    NSURL *soundFileURL = [NSURL fileURLWithPath:soundFilePath];
+    
+    _myAudioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:soundFileURL error:nil];
+    _myAudioPlayer.numberOfLoops = -1; //Infinite
+    
+    [_myAudioPlayer play];
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"playBGM"];
+    _isPlayingMusic=YES;
 }
 
 -(int)compareStringWithCurrentDate:(NSString *)string
@@ -210,6 +234,7 @@
     return UIInterfaceOrientationMaskLandscape;
 }
 
+
 - (IBAction)tappedExitBtn:(id)sender
 {
     //返回首頁
@@ -227,6 +252,10 @@
 }
 
 - (IBAction)tappedExploreBtn:(id)sender {
+    
+    [_myAudioPlayer stop];
+    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"playBGM"];
+
     TelescopeVC *telescopeVC=[[TelescopeVC alloc] initWithNibName:@"TelescopeVC" bundle:[NSBundle mainBundle]];
     [self.navigationController pushViewController:telescopeVC animated:NO];
 }

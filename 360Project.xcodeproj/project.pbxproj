@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		202E838E1EAE638900FAEB0C /* BGM.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 202E838D1EAE638900FAEB0C /* BGM.mp3 */; };
 		20D244631EA123ED00DC7B88 /* btRippleButtton.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D244621EA123ED00DC7B88 /* btRippleButtton.m */; };
 		20D244651EA1244B00DC7B88 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20D244641EA1244B00DC7B88 /* QuartzCore.framework */; };
 		20FFB70A1E9DAE8900AD5C83 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED593D651E5264080004EC38 /* AVFoundation.framework */; };
@@ -31,7 +32,6 @@
 		ED3DE92A1E7BFE9D00690D05 /* peaceful.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = ED3DE9241E7BFE9D00690D05 /* peaceful.mp3 */; };
 		ED3DE92B1E7BFE9D00690D05 /* struggled.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = ED3DE9251E7BFE9D00690D05 /* struggled.mp3 */; };
 		ED3DE92C1E7BFE9D00690D05 /* tender.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = ED3DE9261E7BFE9D00690D05 /* tender.mp3 */; };
-		ED3DE92E1E7BFEBD00690D05 /* BGM.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = ED3DE92D1E7BFEBD00690D05 /* BGM.mp3 */; };
 		ED41EF1C1E3AA874002A69A6 /* JsonRetriever.m in Sources */ = {isa = PBXBuildFile; fileRef = ED41EF1B1E3AA874002A69A6 /* JsonRetriever.m */; };
 		ED41EF211E3AEC7E002A69A6 /* MessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ED41EF1F1E3AEC7E002A69A6 /* MessageCell.m */; };
 		ED41EF221E3AEC7E002A69A6 /* MessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED41EF201E3AEC7E002A69A6 /* MessageCell.xib */; };
@@ -79,6 +79,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		202E838D1EAE638900FAEB0C /* BGM.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = BGM.mp3; sourceTree = "<group>"; };
 		20D244611EA123ED00DC7B88 /* btRippleButtton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = btRippleButtton.h; sourceTree = "<group>"; };
 		20D244621EA123ED00DC7B88 /* btRippleButtton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = btRippleButtton.m; sourceTree = "<group>"; };
 		20D244641EA1244B00DC7B88 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -114,7 +115,6 @@
 		ED3DE9241E7BFE9D00690D05 /* peaceful.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = peaceful.mp3; sourceTree = "<group>"; };
 		ED3DE9251E7BFE9D00690D05 /* struggled.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = struggled.mp3; sourceTree = "<group>"; };
 		ED3DE9261E7BFE9D00690D05 /* tender.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = tender.mp3; sourceTree = "<group>"; };
-		ED3DE92D1E7BFEBD00690D05 /* BGM.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = BGM.mp3; sourceTree = "<group>"; };
 		ED41EF1A1E3AA874002A69A6 /* JsonRetriever.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JsonRetriever.h; sourceTree = "<group>"; };
 		ED41EF1B1E3AA874002A69A6 /* JsonRetriever.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JsonRetriever.m; sourceTree = "<group>"; };
 		ED41EF1E1E3AEC7E002A69A6 /* MessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageCell.h; sourceTree = "<group>"; };
@@ -261,8 +261,8 @@
 			children = (
 				EDF622701E854E3E00116521 /* tutorial.mp4 */,
 				EDF6226C1E84E38D00116521 /* screenshot.mp3 */,
+				202E838D1EAE638900FAEB0C /* BGM.mp3 */,
 				ED3DE9201E7BFD4100690D05 /* music */,
-				ED3DE92D1E7BFEBD00690D05 /* BGM.mp3 */,
 				EDF6226A1E84DC5900116521 /* tapArrow.mp3 */,
 				EDF622681E84DABE00116521 /* tapPuzzle.mp3 */,
 				ED01995D1E7EF4B6003EE5B2 /* group11_mood.plist */,
@@ -632,7 +632,6 @@
 				EDFCB0BD1E37F68B0073E0C6 /* Assets.xcassets in Resources */,
 				ED559A701DFE30A400BF514D /* TelescopeVC.xib in Resources */,
 				405108CA1BEF85B3003BCFF7 /* HTYMenuVC.xib in Resources */,
-				ED3DE92E1E7BFEBD00690D05 /* BGM.mp3 in Resources */,
 				ED559A911DFE7CE100BF514D /* CollectionVC.xib in Resources */,
 				ED559A851DFE58B700BF514D /* IntercomVC.xib in Resources */,
 				405108BC1BEF7F32003BCFF7 /* HTY360PlayerVC.xib in Resources */,
@@ -643,6 +642,7 @@
 				ED3DE9291E7BFE9D00690D05 /* irritated.mp3 in Resources */,
 				ED559A671DFE21C200BF514D /* HomepageVC.xib in Resources */,
 				ED3DE9271E7BFE9D00690D05 /* confused.mp3 in Resources */,
+				202E838E1EAE638900FAEB0C /* BGM.mp3 in Resources */,
 				EDF6226D1E84E38D00116521 /* screenshot.mp3 in Resources */,
 				EDFCB0B61E36CB840073E0C6 /* SendVC.xib in Resources */,
 				EDF6226B1E84DC5900116521 /* tapArrow.mp3 in Resources */,

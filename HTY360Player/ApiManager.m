@@ -8,7 +8,7 @@
 
 #import "ApiManager.h"
 
-NSString *const kMy_API_Key = @"4e06991f-8fad-4dbd-be07-26310e486edc";
+NSString *const kMy_API_Key = @"2b227476-7fb6-488f-b6a6-5b720f37a8f5";
 NSString *const kAuth_URL = @"https://token.beyondverbal.com/token";
 NSString *const kRecording_URL = @"https://apiv3.beyondverbal.com/v3/recording/";
 
