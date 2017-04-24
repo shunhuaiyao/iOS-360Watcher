@@ -173,7 +173,7 @@ static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
 -(void)initializeTimer {
     
     //20秒後隱藏黑框Mask
-    float hideInterval = 20.0;
+    float hideInterval = 1.0;
     [NSTimer scheduledTimerWithTimeInterval:hideInterval
                                      target:self
                                    selector:@selector(dismissMask)
@@ -225,7 +225,10 @@ static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
 
 -(void)dismissMask
 {
-    [self hideMaskWithDuration:1];
+    self.maskFrameView.frame = CGRectMake(0, 0, self.maskFrameView.frame.size.width, self.maskFrameView.frame.size.height+800);
+    self.maskFrameView.center = self.maskFrameView.superview.center;
+    
+    //[self hideMaskWithDuration:1];
 }
 
 - (void)hideMaskWithDuration:(NSTimeInterval)duration {

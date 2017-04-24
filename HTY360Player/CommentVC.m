@@ -252,6 +252,7 @@
     self.StarBtn5UI.alpha = 0.5;
     self.NextBtnUI.alpha = 1;
     hastappedStar = true;
+    [self chooseOption2];
     [self saveStars:@"1"];
 }
 - (IBAction)StarBtn2:(id)sender {
@@ -262,6 +263,7 @@
     self.StarBtn5UI.alpha = 0.5;
     self.NextBtnUI.alpha = 1;
     hastappedStar = true;
+    [self chooseOption2];
     [self saveStars:@"2"];
 }
 - (IBAction)StarBtn3:(id)sender {
@@ -272,6 +274,7 @@
     self.StarBtn5UI.alpha = 0.5;
     self.NextBtnUI.alpha = 1;
     hastappedStar = true;
+    [self chooseOption2];
     [self saveStars:@"3"];
 }
 - (IBAction)StarBtn4:(id)sender {
@@ -282,6 +285,7 @@
     self.StarBtn5UI.alpha = 0.5;
     self.NextBtnUI.alpha = 1;
     hastappedStar = true;
+    [self chooseOption2];
     [self saveStars:@"4"];
 
 }
@@ -293,6 +297,7 @@
     self.StarBtn5UI.alpha = 1;
     self.NextBtnUI.alpha = 1;
     hastappedStar = true;
+    [self chooseOption2];
     [self saveStars:@"5"];
 
 }
