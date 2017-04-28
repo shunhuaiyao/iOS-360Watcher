@@ -92,7 +92,7 @@
     self.thumbnailView.hidden=YES;
 
     self.titleLabel.hidden=YES;
-    self.locationLabel.hidden=YES;
+    //self.locationLabel.hidden=YES;
     /*self.sup.hidden=YES;
     self.sdown.hidden=YES;
     self.sright.hidden=YES;
@@ -135,7 +135,7 @@
     //隱藏詳細影片資訊，恢復瀏覽按鈕可互動
     self.thumbnailView.hidden=YES;
     self.titleLabel.hidden=YES;
-    self.locationLabel.hidden=YES;
+    //self.locationLabel.hidden=YES;
     
     if(!_isPlayingMusic && !_tutorialIsPlaying)
     {
@@ -551,10 +551,10 @@
         NSMutableDictionary *mutableRetrievedDictionary = [[[NSUserDefaults standardUserDefaults] objectForKey:[NSString stringWithFormat:@"%ld", (long)button.tag]] mutableCopy];
         
         //獲取標題及經緯度
-        _titleLabel.text=[mutableRetrievedDictionary objectForKey:@"Title"];
-        _titleLabel.font = [UIFont fontWithName:@"CourierNewPS-BoldMT" size:20.0f];
-        _locationLabel.text=[mutableRetrievedDictionary objectForKey:@"Location"];
-        _locationLabel.font = [UIFont fontWithName:@"CourierNewPS-BoldMT" size:14.0f];
+        _titleLabel.text=[NSString stringWithFormat:@"NO.%@ %@", [mutableRetrievedDictionary objectForKey:@"PuzzleNum"],[mutableRetrievedDictionary objectForKey:@"Title"]];
+        _titleLabel.font = [UIFont fontWithName:@"CourierNewPS-BoldMT" size:14.0f];
+        //_locationLabel.text=[mutableRetrievedDictionary objectForKey:@"Location"];
+        //_locationLabel.font = [UIFont fontWithName:@"CourierNewPS-BoldMT" size:14.0f];
         
         //設定縮圖
         NSURL *url = [NSURL URLWithString:[mutableRetrievedDictionary objectForKey:@"ThumbnailURL"]];
@@ -570,10 +570,10 @@
         _thumbnailView.hidden=NO;
         [self.thumbnailView setUserInteractionEnabled:YES];
         _titleLabel.hidden=NO;
-        _locationLabel.hidden=NO;
+        //_locationLabel.hidden=NO;
         
         //star
-        NSLog(@"star: %@~~", [mutableRetrievedDictionary objectForKey:@"star"]);
+        NSLog(@"puzzel: %@~~", mutableRetrievedDictionary);
     });
 }
 

@@ -49,6 +49,7 @@ static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
 @property (assign, nonatomic) BOOL readyToPlayState;
 @property NSTimer *timer;
 @property MoodEvaluater *moodEvaluater;
+@property CGFloat maskHeight;
 
 //音效相關
 @property SystemSoundID soundID;
@@ -172,11 +173,12 @@ static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
 
 -(void)initializeTimer {
     
-    //20秒後隱藏黑框Mask
-    float hideInterval = 1.0;
-    [NSTimer scheduledTimerWithTimeInterval:hideInterval
+    //eye effects
+    _maskHeight = self.maskFrameView.frame.size.height;
+    float eyeEffectInterval = 0.5;
+    [NSTimer scheduledTimerWithTimeInterval:eyeEffectInterval
                                      target:self
-                                   selector:@selector(dismissMask)
+                                   selector:@selector(startEyeEffects)
                                    userInfo:nil
                                     repeats:NO];
     
@@ -223,12 +225,45 @@ static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
                      }];
 }
 
--(void)dismissMask
+-(void)startEyeEffects{
+    [self showEyeEffects:1.5 index:1 scale:1.4];
+}
+
+-(void)showEyeEffects:(NSTimeInterval)duration index:(int)index scale:(float) scale
 {
-    self.maskFrameView.frame = CGRectMake(0, 0, self.maskFrameView.frame.size.width, self.maskFrameView.frame.size.height+800);
     self.maskFrameView.center = self.maskFrameView.superview.center;
-    
-    //[self hideMaskWithDuration:1];
+    [UIView animateWithDuration:duration
+                          delay:0.0
+                        options:UIViewAnimationOptionCurveEaseIn
+                     animations:^(void) {
+                         self.maskFrameView.frame = CGRectMake(0, 0, self.maskFrameView.frame.size.width, _maskHeight*scale);
+                         self.maskFrameView.center = self.maskFrameView.superview.center;
+                     }
+                     completion:^(BOOL finished){
+                         if (finished) {
+                             if (index == 1) {
+                                 [self showEyeEffects:1.5 index:2 scale:1];
+                             }
+                             else if (index == 2) {
+                                 [self showEyeEffects:1.5 index:3 scale:1.65];
+                             }
+                             else if (index == 3) {
+                                 [self showEyeEffects:1.5 index:4 scale:1];
+                             }
+                             else if (index == 4) {
+                                 [self showEyeEffects:2 index:5 scale:1.4];
+                             }
+                             else if (index == 5) {
+                                 [self showEyeEffects:1 index:6 scale:1];
+                             }
+                             else if (index == 6) {
+                                 [self showEyeEffects:1 index:7 scale:14];
+                             }
+                             else if (index == 7) {
+                                 [self hideMaskWithDuration:1];
+                             }
+                         }
+                     }];
 }
 
 - (void)hideMaskWithDuration:(NSTimeInterval)duration {

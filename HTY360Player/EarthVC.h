@@ -15,7 +15,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *mapView;
 
 @property (weak, nonatomic) IBOutlet UIImageView *earthView;
-@property (weak, nonatomic) IBOutlet UILabel *locationLabel;
+//@property (weak, nonatomic) IBOutlet UILabel *locationLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *thumbnailView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *hintLabel;
