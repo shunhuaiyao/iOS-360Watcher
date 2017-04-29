@@ -17,11 +17,14 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *responseBtn;
 - (IBAction)tappedRespondBtn:(id)sender;
+- (IBAction)tappedEmailBtn:(id)sender;
 
 @property (weak, nonatomic) IBOutlet UITableView *messageTable;
 @property (strong, nonatomic) NSArray *messageArray;
 @property (strong, nonatomic) MessageCell *messageCell;
-
+@property (weak, nonatomic) IBOutlet UITableView *responseTable;
+@property (strong, nonatomic) NSArray *responseArray;
+@property (strong, nonatomic) MessageCell *responeseCell;
 @property NSString *deleteMID;
 @property BOOL whetherSend;
 @property BOOL whetherInspect;
@@ -31,5 +34,7 @@
 
 - (IBAction)tappedExploreBtn:(id)sender;
 - (IBAction)tappedMemoryBtn:(id)sender;
+@property (weak, nonatomic) IBOutlet UIButton *emailBtnUI;
+@property (weak, nonatomic) IBOutlet UIButton *responseBtnUI;
 
 @end

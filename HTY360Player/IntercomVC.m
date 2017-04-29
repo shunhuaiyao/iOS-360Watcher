@@ -12,6 +12,8 @@
 #import "EarthVC.h"
 #import "NaviVC.h"
 #import "SendVC.h"
+#import "EchoVC.h"
+#import "FakeVC.h"
 #import "JsonRetriever.h"
 #import "PlistAccessManager.h"
 #import "BrowseVC.h"
@@ -45,15 +47,23 @@
     _messageArray=[[NSArray alloc]init];
     
     //檢查時間以知是否獲取新訊息
-    _messageTable.hidden=NO;
+    _messageTable.hidden = NO;
     [self checkIfAbleToGetNewMessageByTime];
+    _responseTable.hidden = YES;
     
     //其他設定
     _emptyHint.hidden=YES;
     _whetherSend=NO;
     _whetherInspect=NO;
-    _actionHint.hidden=YES;
-
+    _actionHint.hidden=NO;
+    
+    //response table
+    _responseArray=[NSArray arrayWithObject:[NSDictionary dictionaryWithObject:@"做了對不起朋友的事" forKey:@"Title"]];
+    [_responseTable reloadData];
+    _responseTable.hidden = YES;
+    self.emailBtnUI.alpha = 1;
+    self.responseBtnUI.alpha = 0.5;
+    [self loadBGM];
 }
 
 -(void) viewWillAppear:(BOOL)animated
@@ -83,6 +93,10 @@
     
     //檢查時間以知是否獲取新訊息
     _messageTable.hidden=NO;
+    _responseTable.hidden=YES;
+    self.emailBtnUI.alpha = 1;
+    self.responseBtnUI.alpha = 0.5;
+    _actionHint.text = @"在這些訊息中，說不定有能與你交流的存在";
     [self checkIfAbleToGetNewMessageByTime];
     
     //檢查是否有RE
@@ -94,7 +108,7 @@
         _responseBtn.alpha=1;
     }*/
     
-    [self loadBGM];
+    
 }
 
 -(void) viewDidAppear:(BOOL)animated
@@ -116,8 +130,8 @@
                          completion:^(BOOL finished){
                              if(finished){
                                  _actionHint.alpha = 1;
-                                 _actionHint.hidden=YES;
-                                 _actionHint.text=@"";
+                                 _actionHint.hidden=NO;
+                                 _actionHint.text=@"在這些訊息中，說不定有能與你交流的存在";
                                  _whetherSend=NO;
                                 _whetherInspect=NO;
                              }}];
@@ -126,7 +140,7 @@
 
 -(void) viewWillDisappear:(BOOL)animated
 {
-    [_myAudioPlayer stop];
+    //[_myAudioPlayer stop];
 }
 
 -(void)loadBGM
@@ -261,24 +275,43 @@
 }
 
 - (IBAction)tappedMemoryBtn:(id)sender {
+    [_myAudioPlayer stop];
     EarthVC *earthVC=[[EarthVC alloc] initWithNibName:@"EarthVC" bundle:[NSBundle mainBundle]];
     [self.navigationController pushViewController:earthVC animated:NO];
 }
 
 - (IBAction)tappedRespondBtn:(id)sender
 {
-    ResponseVC *replyVC=[[ResponseVC alloc] initWithNibName:@"ResponseVC" bundle:[NSBundle mainBundle]];
-    [_naviVC pushViewController:replyVC animated:NO];
+    _messageTable.hidden = YES;
+    _responseTable.hidden = NO;
+    self.emailBtnUI.alpha = 0.5;
+    self.responseBtnUI.alpha = 1;
+    _actionHint.text = @"太幸運了，你發出的訊息得到了來自其他世界的回覆";
+    //ResponseVC *replyVC=[[ResponseVC alloc] initWithNibName:@"ResponseVC" bundle:[NSBundle mainBundle]];
+    //[_naviVC pushViewController:replyVC animated:NO];
+}
+
+- (IBAction)tappedEmailBtn:(id)sender {
+    _messageTable.hidden = NO;
+    _responseTable.hidden = YES;
+    self.emailBtnUI.alpha = 1;
+    self.responseBtnUI.alpha = 0.5;
+    _actionHint.text = @"在這些訊息中，說不定有能與你交流的存在";
 }
 
 # pragma mark - TableView 控制相關方法
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    _messageArray=[plistManager getRootArrayOfPlist:@"receivedMessage" underFolder:@"watchtower"];
-    NSInteger num=[_messageArray count];
-    _countLabel.text=[NSString stringWithFormat:@"%ld/12",(long)num];
-    
+    NSInteger num;
+    if ([tableView isEqual: _messageTable]) {
+        _messageArray=[plistManager getRootArrayOfPlist:@"receivedMessage" underFolder:@"watchtower"];
+        num=[_messageArray count];
+        _countLabel.text=[NSString stringWithFormat:@"%ld/12",(long)num];
+    }
+    else{
+        num = [_responseArray count];
+    }
     if(num==0){
         _emptyHint.hidden=NO;
         _countLabel.hidden=YES;
@@ -306,9 +339,18 @@
     bgColorView.backgroundColor = [UIColor clearColor];
     [cell setSelectedBackgroundView:bgColorView];
     
-    NSDictionary *dict=[_messageArray objectAtIndex:indexPath.row];
-    cell.title=[dict objectForKey:@"Title"];
-    NSLog(@"cell:%@",cell);
+    if ([tableView isEqual: _messageTable]) {
+        NSDictionary *dict=[_messageArray objectAtIndex:indexPath.row];
+        cell.title=[dict objectForKey:@"Title"];
+        NSLog(@"cell:%@",cell);
+    }
+    else {
+        NSDictionary *dict=[_responseArray objectAtIndex:indexPath.row];
+        cell.title=[dict objectForKey:@"Title"];
+        cell.descrip.text=@"RE .信件";
+        NSLog(@"cell:%@",cell);
+    }
+    
     return cell;
 }
 
@@ -316,17 +358,32 @@
 {
     NSLog(@"row: %d",(int)indexPath.row);
     
-    //navi
-    BrowseVC *browseVC=[[BrowseVC alloc] initWithNibName:@"BrowseVC" bundle:[NSBundle mainBundle]];
+    if ([tableView isEqual: _messageTable]) {
+        //navi
+        BrowseVC *browseVC=[[BrowseVC alloc] initWithNibName:@"BrowseVC" bundle:[NSBundle mainBundle]];
+        
+        //獲取訊息內容
+        NSDictionary *dict=[_messageArray objectAtIndex:indexPath.row];
+        browseVC.messageDict=dict;
+        //browseVC.Title=[dict objectForKey:@"Title"];
+        //browseVC.Content=[dict objectForKey:@"Content"];
+        
+        //跳轉
+        [_naviVC pushViewController:browseVC animated:NO];
+    }
+    else {
+        //navi
+        EchoVC *echoVC=[[EchoVC alloc] initWithNibName:@"EchoVC" bundle:[NSBundle mainBundle]];
+        
+        //獲取訊息內容
+        NSDictionary *dict=[_responseArray objectAtIndex:indexPath.row];
+        echoVC.messageDict=dict;
+        
+        //跳轉
+        FakeVC *fakeVC=[[FakeVC alloc]init];
+        [self.navigationController pushViewController:fakeVC animated:NO];
+    }
     
-    //獲取訊息內容
-    NSDictionary *dict=[_messageArray objectAtIndex:indexPath.row];
-    browseVC.messageDict=dict;
-    //browseVC.Title=[dict objectForKey:@"Title"];
-    //browseVC.Content=[dict objectForKey:@"Content"];
-    
-    //跳轉
-    [_naviVC pushViewController:browseVC animated:NO];
 }
 
 - (void)didReceiveMemoryWarning

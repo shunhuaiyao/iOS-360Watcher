@@ -48,8 +48,8 @@
     if(collectMode)
     {
         //彈出視窗確認是否取消收藏
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"是否取消收藏"
-                                                        message:@"若不收藏信件，信件將會自信匣中刪除"
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"是否刪除此信件"
+                                                        message:nil
                                                        delegate:self
                                               cancelButtonTitle:@"取消"
                                               otherButtonTitles:@"確定",nil];

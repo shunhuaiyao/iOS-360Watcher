@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1421" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -25,7 +25,7 @@
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="29Q-OO-ct8">
                     <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
                 </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="frameWithMascot" translatesAutoresizingMaskIntoConstraints="NO" id="UR5-un-QCv">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="robotFrame" translatesAutoresizingMaskIntoConstraints="NO" id="UR5-un-QCv">
                     <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
                 </imageView>
                 <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qb8-Eq-DYo">
@@ -66,7 +66,7 @@
                         <constraint firstAttribute="height" constant="30" id="eZf-FZ-BY9"/>
                         <constraint firstAttribute="width" constant="32" id="tGE-Oj-geY"/>
                     </constraints>
-                    <state key="normal" image="fullstar"/>
+                    <state key="normal" image="deleteBtn"/>
                     <connections>
                         <action selector="tappedCollectBtn:" destination="-1" eventType="touchUpInside" id="joY-SZ-oi4"/>
                     </connections>
@@ -93,6 +93,13 @@
                         <action selector="tappedExitBtn:" destination="-1" eventType="touchUpInside" id="qIi-vM-OEs"/>
                     </connections>
                 </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="如果你願意的話，可以試著回覆對方" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Viv-K1-fhC">
+                    <rect key="frame" x="140" y="321" width="467" height="50"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
@@ -126,10 +133,10 @@
     </objects>
     <resources>
         <image name="background" width="1334" height="750"/>
+        <image name="deleteBtn" width="45" height="45"/>
         <image name="exit2" width="14" height="43"/>
-        <image name="frameWithMascot" width="1334" height="750"/>
-        <image name="fullstar" width="81" height="78"/>
         <image name="inspect" width="73" height="73"/>
         <image name="respond" width="123" height="73"/>
+        <image name="robotFrame" width="1335" height="754"/>
     </resources>
 </document>
