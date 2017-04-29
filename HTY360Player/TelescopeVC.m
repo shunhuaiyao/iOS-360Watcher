@@ -197,7 +197,9 @@
     [_sliderView setBounces:NO];
     _sliderView.delegate=self;
     
-    [self downSwipeSetting];
+    //[self downSwipeSetting];
+    
+    _sliderView.scrollEnabled = NO;
     
 }
 

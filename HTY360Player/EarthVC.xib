@@ -11,8 +11,22 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EarthVC">
             <connections>
+                <outlet property="StarDownBtn1" destination="XVb-Gz-EqV" id="mf6-WJ-GTw"/>
+                <outlet property="StarDownBtn2" destination="sQc-3K-HQf" id="nye-gG-a96"/>
+                <outlet property="StarDownBtn3" destination="JgF-vE-rj9" id="pbZ-Xs-f8D"/>
+                <outlet property="StarDownBtn4" destination="MTN-8L-RJH" id="MQX-cq-vs8"/>
+                <outlet property="StarDownBtn5" destination="0M0-q5-4jv" id="bhH-Z4-1yy"/>
+                <outlet property="StarUpBtn1" destination="rL5-37-xtg" id="zb8-5u-J78"/>
+                <outlet property="StarUpBtn2" destination="J4d-ec-Qs9" id="zff-wB-Ii7"/>
+                <outlet property="StarUpBtn3" destination="1NB-yh-DBl" id="htV-qx-Xkn"/>
+                <outlet property="StarUpBtn4" destination="Uij-v8-pZF" id="pbk-rb-bQ2"/>
+                <outlet property="StarUpBtn5" destination="qxN-pv-MYn" id="Bxy-Fs-T2A"/>
+                <outlet property="VideoLeftBtn" destination="f9g-vc-9lg" id="isc-YP-lwT"/>
+                <outlet property="VideoRightBtn" destination="fjg-BP-xGg" id="M3Q-98-7dr"/>
+                <outlet property="classLabel" destination="rzy-cw-Oji" id="EZD-To-JCT"/>
                 <outlet property="contentView" destination="6Mf-kE-zqf" id="NvX-WA-fJn"/>
                 <outlet property="earthView" destination="cK7-LV-eL5" id="5rd-UG-v1B"/>
+                <outlet property="endlessImg" destination="Qyr-bd-Kae" id="qRA-Ym-BP1"/>
                 <outlet property="hintLabel" destination="v2C-mC-ktf" id="UT5-Wq-Crk"/>
                 <outlet property="mapView" destination="KBX-7Y-SOW" id="oJw-Sx-xa0"/>
                 <outlet property="mascotView" destination="P3J-IQ-OWN" id="skJ-Oe-6hh"/>
@@ -78,6 +92,13 @@
                     <constraints>
                         <constraint firstAttribute="width" constant="169" id="3p0-JA-mT7"/>
                         <constraint firstAttribute="height" constant="91" id="leF-J6-MvM"/>
+                    </constraints>
+                </imageView>
+                <imageView userInteractionEnabled="NO" alpha="0.0" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="explore_100" translatesAutoresizingMaskIntoConstraints="NO" id="Qyr-bd-Kae">
+                    <rect key="frame" x="428" y="137" width="184" height="59"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="184" id="ZXU-3u-f7K"/>
+                        <constraint firstAttribute="height" constant="59" id="ZfP-Of-ofi"/>
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v2C-mC-ktf">
@@ -155,6 +176,9 @@
                         <constraint firstAttribute="width" constant="10" id="Qb9-XL-2XQ"/>
                     </constraints>
                     <state key="normal" image="videorightarrow"/>
+                    <connections>
+                        <action selector="tappedVideoRightBtn:" destination="-1" eventType="touchUpInside" id="80E-h1-lLT"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f9g-vc-9lg" userLabel="videoleftarrowBtn">
                     <rect key="frame" x="399" y="190" width="10" height="12"/>
@@ -163,48 +187,66 @@
                         <constraint firstAttribute="width" constant="10" id="d2U-45-N4M"/>
                     </constraints>
                     <state key="normal" image="videoleftarrow"/>
+                    <connections>
+                        <action selector="tappedVideoLeftBtn:" destination="-1" eventType="touchUpInside" id="cUL-lD-3TS"/>
+                    </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rL5-37-xtg" userLabel="StarUpBtn1">
+                <button opaque="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rL5-37-xtg" userLabel="StarUpBtn1">
                     <rect key="frame" x="524" y="80" width="15" height="15"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="15" id="5nA-EZ-DR8"/>
                         <constraint firstAttribute="width" constant="15" id="xdm-Ra-lmt"/>
                     </constraints>
                     <state key="normal" image="StarBtn"/>
+                    <connections>
+                        <action selector="tappedStarUpBtn1:" destination="-1" eventType="touchUpInside" id="ZhX-sU-6BZ"/>
+                    </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J4d-ec-Qs9" userLabel="StarUpBtn2">
+                <button opaque="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J4d-ec-Qs9" userLabel="StarUpBtn2">
                     <rect key="frame" x="546" y="80" width="15" height="15"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="15" id="1jw-5p-g6y"/>
                         <constraint firstAttribute="height" constant="15" id="frd-i0-GTg"/>
                     </constraints>
                     <state key="normal" image="StarBtn"/>
+                    <connections>
+                        <action selector="tappedStarUpBtn2:" destination="-1" eventType="touchUpInside" id="zS3-yk-2ns"/>
+                    </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1NB-yh-DBl" userLabel="StarUpBtn3">
+                <button opaque="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1NB-yh-DBl" userLabel="StarUpBtn3">
                     <rect key="frame" x="568" y="80" width="15" height="15"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="15" id="AIY-Tt-DWL"/>
                         <constraint firstAttribute="width" constant="15" id="Vft-1S-h2G"/>
                     </constraints>
                     <state key="normal" image="StarBtn"/>
+                    <connections>
+                        <action selector="tappedStarUpBtn3:" destination="-1" eventType="touchUpInside" id="rv2-qK-gjp"/>
+                    </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uij-v8-pZF" userLabel="StarUpBtn4">
+                <button opaque="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uij-v8-pZF" userLabel="StarUpBtn4">
                     <rect key="frame" x="590" y="80" width="15" height="15"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="15" id="3dg-BW-cbf"/>
                         <constraint firstAttribute="height" constant="15" id="7So-xI-Lwv"/>
                     </constraints>
                     <state key="normal" image="StarBtn"/>
+                    <connections>
+                        <action selector="tappedStarUpBtn4:" destination="-1" eventType="touchUpInside" id="I3t-Zm-Njf"/>
+                    </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qxN-pv-MYn" userLabel="StarUpBtn5">
+                <button opaque="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qxN-pv-MYn" userLabel="StarUpBtn5">
                     <rect key="frame" x="612" y="80" width="15" height="15"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="15" id="8HV-pS-SVH"/>
                         <constraint firstAttribute="height" constant="15" id="kKw-Em-Pru"/>
                     </constraints>
                     <state key="normal" image="StarBtn"/>
+                    <connections>
+                        <action selector="tappedStarUpBtn5:" destination="-1" eventType="touchUpInside" id="f11-fY-ZWf"/>
+                    </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XVb-Gz-EqV" userLabel="StarDownBtn1">
+                <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XVb-Gz-EqV" userLabel="StarDownBtn1">
                     <rect key="frame" x="462" y="255" width="15" height="15"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="15" id="MNP-uP-0NM"/>
@@ -212,7 +254,7 @@
                     </constraints>
                     <state key="normal" image="StarBtn"/>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sQc-3K-HQf" userLabel="StarDownBtn2">
+                <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sQc-3K-HQf" userLabel="StarDownBtn2">
                     <rect key="frame" x="487" y="255" width="15" height="15"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="15" id="19E-Ia-kk0"/>
@@ -220,7 +262,7 @@
                     </constraints>
                     <state key="normal" image="StarBtn"/>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JgF-vE-rj9" userLabel="StarDownBtn3">
+                <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JgF-vE-rj9" userLabel="StarDownBtn3">
                     <rect key="frame" x="511" y="255" width="15" height="15"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="15" id="Vby-m6-3tD"/>
@@ -228,7 +270,7 @@
                     </constraints>
                     <state key="normal" image="StarBtn"/>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MTN-8L-RJH" userLabel="StarDownBtn4">
+                <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MTN-8L-RJH" userLabel="StarDownBtn4">
                     <rect key="frame" x="535" y="255" width="15" height="15"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="15" id="Vft-Bb-6by"/>
@@ -236,7 +278,7 @@
                     </constraints>
                     <state key="normal" image="StarBtn"/>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0M0-q5-4jv" userLabel="StarDownBtn5">
+                <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0M0-q5-4jv" userLabel="StarDownBtn5">
                     <rect key="frame" x="559" y="255" width="15" height="15"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="15" id="BZw-5J-g7Q"/>
@@ -251,6 +293,9 @@
                         <constraint firstAttribute="height" constant="15" id="dlH-85-jvL"/>
                     </constraints>
                     <state key="normal" image="classleftarrow"/>
+                    <connections>
+                        <action selector="tappedClassLeftArrow:" destination="-1" eventType="touchUpInside" id="2J6-Be-d5e"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gZg-Zb-JoG" userLabel="classleftarrowBtn">
                     <rect key="frame" x="499" y="80" width="15" height="15"/>
@@ -259,8 +304,11 @@
                         <constraint firstAttribute="height" constant="15" id="8YJ-xx-rDc"/>
                     </constraints>
                     <state key="normal" image="classrightarrow"/>
+                    <connections>
+                        <action selector="tappedClassRightArrow:" destination="-1" eventType="touchUpInside" id="Twn-QL-RoS"/>
+                    </connections>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ENDLESS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rzy-cw-Oji" userLabel="class">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ALL" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rzy-cw-Oji" userLabel="class">
                     <rect key="frame" x="424" y="77" width="76" height="21"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="76" id="3k5-Sc-WHW"/>
@@ -275,6 +323,7 @@
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="QcS-36-PbR" secondAttribute="bottom" id="1BO-Vd-Bz3"/>
                 <constraint firstItem="Uij-v8-pZF" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="80" id="2kM-bH-34f"/>
+                <constraint firstAttribute="trailing" secondItem="Qyr-bd-Kae" secondAttribute="trailing" constant="55" id="37m-rD-lDq"/>
                 <constraint firstItem="QcS-36-PbR" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="3bY-s5-L82"/>
                 <constraint firstItem="f9g-vc-9lg" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="190" id="3jA-rC-mKN"/>
                 <constraint firstItem="qxN-pv-MYn" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="612" id="4cC-tY-TtD"/>
@@ -311,6 +360,7 @@
                 <constraint firstItem="rL5-37-xtg" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="80" id="SU6-eb-OPR"/>
                 <constraint firstItem="sQc-3K-HQf" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="487" id="Sdz-mL-rsH"/>
                 <constraint firstItem="E3U-rB-0tP" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="2" id="TES-N8-hmG"/>
+                <constraint firstItem="Qyr-bd-Kae" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="428" id="TRl-xJ-wYX"/>
                 <constraint firstItem="Qvn-0H-7M2" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="432" id="TfN-dI-nu1"/>
                 <constraint firstAttribute="trailing" secondItem="JgF-vE-rj9" secondAttribute="trailing" constant="141" id="U3f-9I-e5W"/>
                 <constraint firstAttribute="trailing" secondItem="rL5-37-xtg" secondAttribute="trailing" constant="128" id="UXI-RV-8pl"/>
@@ -343,6 +393,7 @@
                 <constraint firstItem="Qvn-0H-7M2" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="114" id="ihh-Dd-o9c"/>
                 <constraint firstAttribute="bottom" secondItem="rL5-37-xtg" secondAttribute="bottom" constant="280" id="isa-K5-Lmj"/>
                 <constraint firstAttribute="bottom" secondItem="SBK-kw-u2N" secondAttribute="bottom" constant="280" id="jiE-2z-NWs"/>
+                <constraint firstAttribute="bottom" secondItem="Qyr-bd-Kae" secondAttribute="bottom" constant="179" id="kgp-17-LwO"/>
                 <constraint firstAttribute="bottom" secondItem="kYH-uD-glh" secondAttribute="bottom" constant="10" id="l6g-dV-NfC"/>
                 <constraint firstAttribute="bottom" secondItem="0M0-q5-4jv" secondAttribute="bottom" constant="105" id="lfs-yL-6VU"/>
                 <constraint firstAttribute="bottom" secondItem="v2C-mC-ktf" secondAttribute="bottom" constant="3" id="mbS-bc-dd0"/>
@@ -358,6 +409,7 @@
                 <constraint firstAttribute="bottom" secondItem="J4d-ec-Qs9" secondAttribute="bottom" constant="280" id="ryo-Fa-nRt"/>
                 <constraint firstItem="JgF-vE-rj9" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="511" id="sUo-uE-4gI"/>
                 <constraint firstAttribute="trailing" secondItem="gZg-Zb-JoG" secondAttribute="trailing" constant="153" id="tBo-kh-Pnt"/>
+                <constraint firstItem="Qyr-bd-Kae" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="137" id="tXg-4W-eA9"/>
                 <constraint firstAttribute="trailing" secondItem="XVb-Gz-EqV" secondAttribute="trailing" constant="190" id="ukX-Ts-QuD"/>
                 <constraint firstAttribute="bottom" secondItem="qxN-pv-MYn" secondAttribute="bottom" constant="280" id="upq-fy-pXw"/>
                 <constraint firstItem="XVb-Gz-EqV" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="462" id="x6o-4I-9fp"/>
@@ -381,6 +433,7 @@
         <image name="classleftarrow" width="30" height="30"/>
         <image name="classrightarrow" width="30" height="30"/>
         <image name="earthBG" width="647" height="647"/>
+        <image name="explore_100" width="327" height="106"/>
         <image name="robotFrame" width="1335" height="754"/>
         <image name="triangle_25" width="70" height="47"/>
         <image name="videoleftarrow" width="19" height="23"/>

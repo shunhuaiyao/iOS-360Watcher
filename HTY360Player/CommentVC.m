@@ -29,6 +29,7 @@
     
     NSLog(@"PuzzleNum: %@!!!!!", [_currentVideoInfo objectForKey:@"PuzzleNum"]);
     [[NSUserDefaults standardUserDefaults] setObject:_currentVideoInfo forKey:[NSString stringWithFormat:@"%@", [_currentVideoInfo objectForKey:@"PuzzleNum"]]];
+    
 
     //獲取標題及經緯度
     _titleLabel.text=[_currentVideoInfo objectForKey:@"Title"];
@@ -203,13 +204,21 @@
 
 - (void) saveStars:(NSString *) star{
     NSMutableDictionary *mutableRetrievedDictionary = [[[NSUserDefaults standardUserDefaults] objectForKey:[NSString stringWithFormat:@"%@", [_currentVideoInfo objectForKey:@"PuzzleNum"]]] mutableCopy];
-    NSLog(@"Before STAR: %@!!", mutableRetrievedDictionary);
+    NSMutableArray *mutableTotalVideos = [[[NSUserDefaults standardUserDefaults] objectForKey:@"totalVideos"] mutableCopy];
+    if (mutableTotalVideos == NULL) {
+        mutableTotalVideos = [[NSMutableArray alloc] init];
+    }
+    NSLog(@"Before STAR: %@!!", mutableTotalVideos);
     
     [mutableRetrievedDictionary setObject:star forKey:@"star"];
+    [mutableTotalVideos addObject:[NSString stringWithFormat:@"%@", [_currentVideoInfo objectForKey:@"PuzzleNum"]]];
     
     [[NSUserDefaults standardUserDefaults] setObject:mutableRetrievedDictionary forKey:[NSString stringWithFormat:@"%@", [mutableRetrievedDictionary objectForKey:@"PuzzleNum"]]];
+    [[NSUserDefaults standardUserDefaults] setObject:mutableTotalVideos forKey:@"totalVideos"];
+    
     
     NSLog(@"STAR: %@!!", mutableRetrievedDictionary);
+    NSLog(@"total videos: %@!!", mutableTotalVideos);
 
 }
 

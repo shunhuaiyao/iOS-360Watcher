@@ -37,6 +37,7 @@
     //360影片播放
     HTY360PlayerVC *_360Player;
     NSString *_chosenVideoId;
+    NSString *_chosenPuzzelNum;
     NSString *_chosenVideoURL;
     NSTimer *_timer; //等一段時間給影片先加載
     
@@ -65,6 +66,16 @@
     UIImageView *_ufo4;
     BOOL _playingUFOAnimation;
     
+    // class
+    int currentClass;
+    UIImage *class0;
+    UIImage *class1;
+    UIImage *class2;
+    UIImage *class3;
+    UIImage *class4;
+    UIImage *class5;
+    NSMutableArray *sameStarVideos;
+    
     PlistAccessManager *_plistManager;
 }
 @end
@@ -77,6 +88,7 @@
     
     _plistManager=[[PlistAccessManager alloc]init];
     _chosenVideoId=[NSString string];
+    _chosenPuzzelNum = [NSString string];
     _chosenVideoURL=[NSString string];
     
     self.scrollView.delegate=self;
@@ -85,11 +97,16 @@
     self.scrollView.contentSize = self.contentView.frame.size;
     self.scrollView.scrollEnabled=YES;
     
-    UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tappedTelescopeBtn)];
-    singleTap.numberOfTapsRequired = 1;
+    UITapGestureRecognizer *singleTapforThumbnail = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tappedTelescopeBtn)];
+    singleTapforThumbnail.numberOfTapsRequired = 1;
     [self.thumbnailView setUserInteractionEnabled:NO];
-    [self.thumbnailView addGestureRecognizer:singleTap];
+    [self.thumbnailView addGestureRecognizer:singleTapforThumbnail];
     self.thumbnailView.hidden=YES;
+    UITapGestureRecognizer *singleTapforEndless = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(playRandomVideo)];
+    singleTapforEndless.numberOfTapsRequired = 1;
+    [self.endlessImg setUserInteractionEnabled:NO];
+    [self.endlessImg addGestureRecognizer:singleTapforEndless];
+    self.endlessImg.hidden=YES;
 
     self.titleLabel.hidden=YES;
     //self.locationLabel.hidden=YES;
@@ -109,7 +126,7 @@
     }
     
     [self loadBGM];
-    [self swipeSetting];
+    //[self swipeSetting];
     [self loadHintLabelSetting];
     [self loadMascotSetting];
     [self audioSetting];
@@ -124,6 +141,16 @@
     [_tagBtn setImage:[UIImage imageNamed:@"tag"] forState:UIControlStateNormal];
     [_tagBtn addTarget:self action:@selector(tagBtnHit) forControlEvents:UIControlEventTouchUpInside];
     [_contentView addSubview:_tagBtn];*/
+    
+    // class
+    currentClass = 0;
+    class0 = [UIImage imageNamed: @"background.png"];
+    class1 = [UIImage imageNamed: @"class1.png"];
+    class2 = [UIImage imageNamed: @"class2.png"];
+    class3 = [UIImage imageNamed: @"class3.png"];
+    class4 = [UIImage imageNamed: @"class4.png"];
+    class5 = [UIImage imageNamed: @"class5.png"];
+
 }
 
 -(void) viewWillAppear:(BOOL)animated
@@ -201,6 +228,15 @@
     
         //透過puzzleArray把現有的拼圖給移除
         [self clearAllPuzzle];
+        
+        // reset puzzel
+        NSMutableArray *videos = [[[NSUserDefaults standardUserDefaults] objectForKey:@"totalVideos"] mutableCopy];
+        for (NSString *puzzelNum in videos){
+            NSLog(@"%@\n", puzzelNum);
+            [[NSUserDefaults standardUserDefaults] removeObjectForKey:puzzelNum];
+        }
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"totalVideos"];
+        
     });
 }
 
@@ -338,7 +374,7 @@
         
         case 5:
             _hintLabel.tag=6;
-            _hintLabel.text=@"你可以在這裡觀看已經收集到的記憶片段，\n或是往上滑重新尋找新的記憶";
+            _hintLabel.text=@"你可以在這裡觀看已經收集到的記憶片段，\n或是重新尋找新的記憶";
             [self dialogShowEffect];
             break;
             
@@ -499,8 +535,7 @@
         int i=(int)button.tag;
         NSLog(@"button: %ld",(long)button.tag);
     
-        for(NSDictionary *dict in _puzzleArray)
-        {
+        for(NSDictionary *dict in _puzzleArray) {
             BOOL foundOld=NO;
             BOOL foundNew=NO;
             BOOL foundSelf=NO;
@@ -564,16 +599,71 @@
         
         //設置影片ID及網址
         _chosenVideoId=[mutableRetrievedDictionary objectForKey:@"ID"];
+        _chosenPuzzelNum=[NSString stringWithFormat:@"%@",[mutableRetrievedDictionary objectForKey:@"PuzzleNum"]];
         _chosenVideoURL=[mutableRetrievedDictionary objectForKey:@"VideoURL"];
         
         //原本隱藏轉為顯示
         _thumbnailView.hidden=NO;
         [self.thumbnailView setUserInteractionEnabled:YES];
+        self.endlessImg.hidden=YES;
+        [self.endlessImg setUserInteractionEnabled:NO];
         _titleLabel.hidden=NO;
         //_locationLabel.hidden=NO;
         
         //star
         NSLog(@"puzzel: %@~~", mutableRetrievedDictionary);
+        
+        self.StarUpBtn1.alpha = 0.5;
+        self.StarUpBtn2.alpha = 0.5;
+        self.StarUpBtn3.alpha = 0.5;
+        self.StarUpBtn4.alpha = 0.5;
+        self.StarUpBtn5.alpha = 0.5;
+        
+        self.VideoLeftBtn.alpha = 0;
+        self.VideoRightBtn.alpha = 0;
+        
+        if ([[mutableRetrievedDictionary objectForKey:@"star"] isEqualToString:@"0"]) {
+            self.StarDownBtn1.alpha = 0.5;
+            self.StarDownBtn2.alpha = 0.5;
+            self.StarDownBtn3.alpha = 0.5;
+            self.StarDownBtn4.alpha = 0.5;
+            self.StarDownBtn5.alpha = 0.5;
+        }
+        else if ([[mutableRetrievedDictionary objectForKey:@"star"] isEqualToString:@"1"]) {
+            self.StarDownBtn1.alpha = 1;
+            self.StarDownBtn2.alpha = 0.5;
+            self.StarDownBtn3.alpha = 0.5;
+            self.StarDownBtn4.alpha = 0.5;
+            self.StarDownBtn5.alpha = 0.5;
+        }
+        else if ([[mutableRetrievedDictionary objectForKey:@"star"] isEqualToString:@"2"]) {
+            self.StarDownBtn1.alpha = 1;
+            self.StarDownBtn2.alpha = 1;
+            self.StarDownBtn3.alpha = 0.5;
+            self.StarDownBtn4.alpha = 0.5;
+            self.StarDownBtn5.alpha = 0.5;
+        }
+        else if ([[mutableRetrievedDictionary objectForKey:@"star"] isEqualToString:@"3"]) {
+            self.StarDownBtn1.alpha = 1;
+            self.StarDownBtn2.alpha = 1;
+            self.StarDownBtn3.alpha = 1;
+            self.StarDownBtn4.alpha = 0.5;
+            self.StarDownBtn5.alpha = 0.5;
+        }
+        else if ([[mutableRetrievedDictionary objectForKey:@"star"] isEqualToString:@"4"]) {
+            self.StarDownBtn1.alpha = 1;
+            self.StarDownBtn2.alpha = 1;
+            self.StarDownBtn3.alpha = 1;
+            self.StarDownBtn4.alpha = 1;
+            self.StarDownBtn5.alpha = 0.5;
+        }
+        else if ([[mutableRetrievedDictionary objectForKey:@"star"] isEqualToString:@"5"]) {
+            self.StarDownBtn1.alpha = 1;
+            self.StarDownBtn2.alpha = 1;
+            self.StarDownBtn3.alpha = 1;
+            self.StarDownBtn4.alpha = 1;
+            self.StarDownBtn5.alpha = 1;
+        }
     });
 }
 
@@ -581,6 +671,7 @@
 {
     //禁止反覆按到
     [self.thumbnailView setUserInteractionEnabled:NO];
+    [self.endlessImg setUserInteractionEnabled:NO];
     
     //將音效檔轉換成SystemSoundID型態
     AudioServicesCreateSystemSoundID((__bridge CFURLRef)_sound_url2, &soundID);
@@ -598,6 +689,37 @@
     _360Player = [[HTY360PlayerVC alloc] initWithNibName:@"HTY360PlayerVC"
                                                         bundle:nil
                                                            url:url];
+    _360Player.onlyForBrowse=YES; //暫時瀏覽模式
+    
+    //5秒後再開始播影片
+    _timer =[NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(switchToPlayVideo) userInfo:nil repeats:NO];
+}
+
+- (void)playRandomVideo {
+    //禁止反覆按到
+    [self.thumbnailView setUserInteractionEnabled:NO];
+    [self.endlessImg setUserInteractionEnabled:NO];
+    
+    //將音效檔轉換成SystemSoundID型態
+    AudioServicesCreateSystemSoundID((__bridge CFURLRef)_sound_url2, &soundID);
+    AudioServicesPlaySystemSound(soundID);
+    
+    //切換提示
+    _hintLabel.text=@"我們即將潛入這段記憶中，請稍候........";
+    _hintLabel.userInteractionEnabled=NO;
+    [self dialogShowEffect];
+    [_triangleView stopAnimating];
+    _triangleView.hidden=YES;
+    
+    //準備隨機播放影片
+    NSMutableArray *puzzleVideos = [[[NSUserDefaults standardUserDefaults] objectForKey:@"totalVideos"] mutableCopy];
+    NSUInteger randomIndex = arc4random() % [puzzleVideos count];
+    NSDictionary *videoInfo = [[NSUserDefaults standardUserDefaults] objectForKey:[puzzleVideos objectAtIndex:randomIndex]];
+    
+    NSURL *url = [[NSURL alloc] initWithString:[videoInfo objectForKey:@"VideoURL"]];
+    _360Player = [[HTY360PlayerVC alloc] initWithNibName:@"HTY360PlayerVC"
+                                                  bundle:nil
+                                                     url:url];
     _360Player.onlyForBrowse=YES; //暫時瀏覽模式
     
     //5秒後再開始播影片
@@ -666,6 +788,108 @@
 
 - (IBAction)tappedMessageBtn:(id)sender {
     [self gotoIntercom];
+}
+
+- (IBAction)tappedClassLeftArrow:(id)sender {
+    [self changeClass: -1];
+}
+
+- (IBAction)tappedClassRightArrow:(id)sender {
+    [self changeClass: 1];
+}
+
+-(void) changeClass:(int) direction {
+    
+    if ((direction==1 && currentClass+1<=6) || (direction==-1 && currentClass-1>=0) ) {
+        currentClass += direction;
+    }
+    NSLog(@"class: %d", currentClass);
+    if (currentClass == 0) {
+        [self.mapView setImage:class0];
+        [self.mapView setFrame:CGRectMake(0, 0, 667, 375)];
+        self.mapView.center = self.mapView.superview.center;
+        self.classLabel.text = @"ALL";
+        _hintLabel.text = @"選擇條件，找到您想尋找的記憶";
+        self.endlessImg.hidden=YES;
+        [self.endlessImg setUserInteractionEnabled:NO];
+        self.VideoLeftBtn.alpha = 1;
+        self.VideoRightBtn.alpha = 1;
+    }
+    else if (currentClass == 1) {
+        [self.mapView setImage:class1];
+        [self.mapView setFrame:CGRectMake(0, -2, 667, 375)];
+        self.classLabel.text = @"I";
+        _hintLabel.text = @"選擇條件，找到您想尋找的記憶";
+        self.endlessImg.hidden=YES;
+        [self.endlessImg setUserInteractionEnabled:NO];
+        self.VideoLeftBtn.alpha = 1;
+        self.VideoRightBtn.alpha = 1;
+    }
+    else if (currentClass == 2) {
+        [self.mapView setImage:class2];
+        [self.mapView setFrame:CGRectMake(0, -2, 667, 375)];
+        self.classLabel.text = @"II";
+        _hintLabel.text = @"選擇條件，找到您想尋找的記憶";
+        self.endlessImg.hidden=YES;
+        [self.endlessImg setUserInteractionEnabled:NO];
+        self.VideoLeftBtn.alpha = 1;
+        self.VideoRightBtn.alpha = 1;
+    }
+    else if (currentClass == 3) {
+        [self.mapView setImage:class3];
+        [self.mapView setFrame:CGRectMake(0, -2, 667, 375)];
+        self.classLabel.text = @"III";
+        _hintLabel.text = @"選擇條件，找到您想尋找的記憶";
+        self.endlessImg.hidden=YES;
+        [self.endlessImg setUserInteractionEnabled:NO];
+        self.VideoLeftBtn.alpha = 1;
+        self.VideoRightBtn.alpha = 1;
+    }
+    else if (currentClass == 4) {
+        [self.mapView setImage:class4];
+        [self.mapView setFrame:CGRectMake(0, -2, 667, 375)];
+        self.classLabel.text = @"IV";
+        _hintLabel.text = @"選擇條件，找到您想尋找的記憶";
+        self.endlessImg.hidden=YES;
+        [self.endlessImg setUserInteractionEnabled:NO];
+        self.VideoLeftBtn.alpha = 1;
+        self.VideoRightBtn.alpha = 1;
+    }
+    else if (currentClass == 5) {
+        [self.mapView setImage:class5];
+        [self.mapView setFrame:CGRectMake(0, -2, 667, 375)];
+        self.classLabel.text = @"V";
+        _hintLabel.text = @"選擇條件，找到您想尋找的記憶";
+        self.endlessImg.hidden=YES;
+        [self.endlessImg setUserInteractionEnabled:NO];
+        self.VideoLeftBtn.alpha = 1;
+        self.VideoRightBtn.alpha = 1;
+    }
+    else if (currentClass == 6) {
+        [self.mapView setImage:class0];
+        [self.mapView setFrame:CGRectMake(0, 0, 667, 375)];
+        self.mapView.center = self.mapView.superview.center;
+        self.classLabel.text = @"ENDLESS";
+        _hintLabel.text = @"選擇條件，找到您想尋找的記憶";
+        self.endlessImg.hidden=NO;
+        self.endlessImg.alpha = 1;
+        [self.endlessImg setUserInteractionEnabled:YES];
+        _titleLabel.hidden = YES;
+        _thumbnailView.hidden = YES;
+        self.StarUpBtn1.alpha = 0.5;
+        self.StarUpBtn2.alpha = 0.5;
+        self.StarUpBtn3.alpha = 0.5;
+        self.StarUpBtn4.alpha = 0.5;
+        self.StarUpBtn5.alpha = 0.5;
+        self.StarDownBtn1.alpha = 0;
+        self.StarDownBtn2.alpha = 0;
+        self.StarDownBtn3.alpha = 0;
+        self.StarDownBtn4.alpha = 0;
+        self.StarDownBtn5.alpha = 0;
+        self.VideoLeftBtn.alpha = 0;
+        self.VideoRightBtn.alpha = 0;
+    }
+    
 }
 
 -(void) swipeSetting
@@ -865,4 +1089,339 @@
     }
 }
 
+- (IBAction)tappedStarUpBtn1:(id)sender {
+    self.StarUpBtn1.alpha = 1;
+    self.StarUpBtn2.alpha = 0.5;
+    self.StarUpBtn3.alpha = 0.5;
+    self.StarUpBtn4.alpha = 0.5;
+    self.StarUpBtn5.alpha = 0.5;
+    
+    if (currentClass != 6) {
+        self.VideoLeftBtn.alpha = 1;
+        self.VideoRightBtn.alpha = 1;
+        [self selectedVideos:1];
+    }
+    else{
+        self.VideoLeftBtn.alpha = 0;
+        self.VideoRightBtn.alpha = 0;
+    }
+    
+}
+
+- (IBAction)tappedStarUpBtn2:(id)sender {
+    self.StarUpBtn1.alpha = 1;
+    self.StarUpBtn2.alpha = 1;
+    self.StarUpBtn3.alpha = 0.5;
+    self.StarUpBtn4.alpha = 0.5;
+    self.StarUpBtn5.alpha = 0.5;
+    
+    if (currentClass != 6) {
+        self.VideoLeftBtn.alpha = 1;
+        self.VideoRightBtn.alpha = 1;
+        [self selectedVideos:2];
+    }
+    else{
+        self.VideoLeftBtn.alpha = 0;
+        self.VideoRightBtn.alpha = 0;
+    }
+}
+
+- (IBAction)tappedStarUpBtn3:(id)sender {
+    self.StarUpBtn1.alpha = 1;
+    self.StarUpBtn2.alpha = 1;
+    self.StarUpBtn3.alpha = 1;
+    self.StarUpBtn4.alpha = 0.5;
+    self.StarUpBtn5.alpha = 0.5;
+    
+    if (currentClass != 6) {
+        self.VideoLeftBtn.alpha = 1;
+        self.VideoRightBtn.alpha = 1;
+        [self selectedVideos:3];
+    }
+    else{
+        self.VideoLeftBtn.alpha = 0;
+        self.VideoRightBtn.alpha = 0;
+    }
+}
+
+- (IBAction)tappedStarUpBtn4:(id)sender {
+    self.StarUpBtn1.alpha = 1;
+    self.StarUpBtn2.alpha = 1;
+    self.StarUpBtn3.alpha = 1;
+    self.StarUpBtn4.alpha = 1;
+    self.StarUpBtn5.alpha = 0.5;
+    
+    if (currentClass != 6) {
+        self.VideoLeftBtn.alpha = 1;
+        self.VideoRightBtn.alpha = 1;
+        [self selectedVideos:4];
+    }
+    else{
+        self.VideoLeftBtn.alpha = 0;
+        self.VideoRightBtn.alpha = 0;
+    }
+}
+
+- (IBAction)tappedStarUpBtn5:(id)sender {
+    self.StarUpBtn1.alpha = 1;
+    self.StarUpBtn2.alpha = 1;
+    self.StarUpBtn3.alpha = 1;
+    self.StarUpBtn4.alpha = 1;
+    self.StarUpBtn5.alpha = 1;
+    
+    if (currentClass != 6) {
+        self.VideoLeftBtn.alpha = 1;
+        self.VideoRightBtn.alpha = 1;
+        [self selectedVideos:5];
+    }
+    else{
+        self.VideoLeftBtn.alpha = 0;
+        self.VideoRightBtn.alpha = 0;
+    }
+}
+- (IBAction)tappedVideoRightBtn:(id)sender {
+
+    int index = -1;
+    int size = (int)[sameStarVideos count];
+    
+    for(NSString *puzzelNum in sameStarVideos) {
+        index ++;
+        NSDictionary *videoInfo = [[NSUserDefaults standardUserDefaults] objectForKey:puzzelNum];
+        NSString *puzzelNum = [NSString stringWithFormat:@"%@", [videoInfo objectForKey:@"PuzzleNum"]];
+        if ([puzzelNum isEqualToString:[NSString stringWithFormat:@"%@",_chosenPuzzelNum]]){
+            break;
+        }
+    }
+    
+    if (index+1<size && index>=0) {
+        index ++;
+        NSDictionary *videoInfo = [[NSUserDefaults standardUserDefaults] objectForKey:[sameStarVideos objectAtIndex:index]];
+        _titleLabel.text=[NSString stringWithFormat:@"NO.%@ %@", [videoInfo objectForKey:@"PuzzleNum"],[videoInfo objectForKey:@"Title"]];
+        _titleLabel.font = [UIFont fontWithName:@"CourierNewPS-BoldMT" size:14.0f];
+        NSURL *url = [NSURL URLWithString:[videoInfo objectForKey:@"ThumbnailURL"]];
+        NSData *data = [NSData dataWithContentsOfURL:url];
+        UIImage *img = [[UIImage alloc] initWithData:data];
+        _thumbnailView.image=img;
+        _chosenVideoId=[videoInfo objectForKey:@"ID"];
+        _chosenPuzzelNum=[NSString stringWithFormat:@"%@",[videoInfo objectForKey:@"PuzzleNum"]];
+        _chosenVideoURL=[videoInfo objectForKey:@"VideoURL"];
+        _thumbnailView.hidden=NO;
+        [self.thumbnailView setUserInteractionEnabled:YES];
+        _titleLabel.hidden=NO;
+        
+        self.VideoLeftBtn.alpha = 1;
+        self.VideoRightBtn.alpha = 1;
+        
+        if ([[videoInfo objectForKey:@"star"] isEqualToString:@"0"]) {
+            self.StarDownBtn1.alpha = 0.5;
+            self.StarDownBtn2.alpha = 0.5;
+            self.StarDownBtn3.alpha = 0.5;
+            self.StarDownBtn4.alpha = 0.5;
+            self.StarDownBtn5.alpha = 0.5;
+        }
+        else if ([[videoInfo objectForKey:@"star"] isEqualToString:@"1"]) {
+            self.StarDownBtn1.alpha = 1;
+            self.StarDownBtn2.alpha = 0.5;
+            self.StarDownBtn3.alpha = 0.5;
+            self.StarDownBtn4.alpha = 0.5;
+            self.StarDownBtn5.alpha = 0.5;
+        }
+        else if ([[videoInfo objectForKey:@"star"] isEqualToString:@"2"]) {
+            self.StarDownBtn1.alpha = 1;
+            self.StarDownBtn2.alpha = 1;
+            self.StarDownBtn3.alpha = 0.5;
+            self.StarDownBtn4.alpha = 0.5;
+            self.StarDownBtn5.alpha = 0.5;
+        }
+        else if ([[videoInfo objectForKey:@"star"] isEqualToString:@"3"]) {
+            self.StarDownBtn1.alpha = 1;
+            self.StarDownBtn2.alpha = 1;
+            self.StarDownBtn3.alpha = 1;
+            self.StarDownBtn4.alpha = 0.5;
+            self.StarDownBtn5.alpha = 0.5;
+        }
+        else if ([[videoInfo objectForKey:@"star"] isEqualToString:@"4"]) {
+            self.StarDownBtn1.alpha = 1;
+            self.StarDownBtn2.alpha = 1;
+            self.StarDownBtn3.alpha = 1;
+            self.StarDownBtn4.alpha = 1;
+            self.StarDownBtn5.alpha = 0.5;
+        }
+        else if ([[videoInfo objectForKey:@"star"] isEqualToString:@"5"]) {
+            self.StarDownBtn1.alpha = 1;
+            self.StarDownBtn2.alpha = 1;
+            self.StarDownBtn3.alpha = 1;
+            self.StarDownBtn4.alpha = 1;
+            self.StarDownBtn5.alpha = 1;
+        }
+    }
+}
+
+- (IBAction)tappedVideoLeftBtn:(id)sender {
+    
+    int index = -1;
+    int size = (int)[sameStarVideos count];
+    
+    for(NSString *puzzelNum in sameStarVideos) {
+        index ++;
+        NSDictionary *videoInfo = [[NSUserDefaults standardUserDefaults] objectForKey:puzzelNum];
+        NSString *puzzelNum = [NSString stringWithFormat:@"%@", [videoInfo objectForKey:@"PuzzleNum"]];
+        if ([puzzelNum isEqualToString:[NSString stringWithFormat:@"%@",_chosenPuzzelNum]]){
+            break;
+        }
+    }
+    
+    if (index-1>=0) {
+        index --;
+        NSDictionary *videoInfo = [[NSUserDefaults standardUserDefaults] objectForKey:[sameStarVideos objectAtIndex:index]];
+        _titleLabel.text=[NSString stringWithFormat:@"NO.%@ %@", [videoInfo objectForKey:@"PuzzleNum"],[videoInfo objectForKey:@"Title"]];
+        _titleLabel.font = [UIFont fontWithName:@"CourierNewPS-BoldMT" size:14.0f];
+        NSURL *url = [NSURL URLWithString:[videoInfo objectForKey:@"ThumbnailURL"]];
+        NSData *data = [NSData dataWithContentsOfURL:url];
+        UIImage *img = [[UIImage alloc] initWithData:data];
+        _thumbnailView.image=img;
+        _chosenVideoId=[videoInfo objectForKey:@"ID"];
+        _chosenPuzzelNum=[NSString stringWithFormat:@"%@",[videoInfo objectForKey:@"PuzzleNum"]];
+        _chosenVideoURL=[videoInfo objectForKey:@"VideoURL"];
+        _thumbnailView.hidden=NO;
+        [self.thumbnailView setUserInteractionEnabled:YES];
+        _titleLabel.hidden=NO;
+        
+        self.VideoLeftBtn.alpha = 1;
+        self.VideoRightBtn.alpha = 1;
+        
+        if ([[videoInfo objectForKey:@"star"] isEqualToString:@"0"]) {
+            self.StarDownBtn1.alpha = 0.5;
+            self.StarDownBtn2.alpha = 0.5;
+            self.StarDownBtn3.alpha = 0.5;
+            self.StarDownBtn4.alpha = 0.5;
+            self.StarDownBtn5.alpha = 0.5;
+        }
+        else if ([[videoInfo objectForKey:@"star"] isEqualToString:@"1"]) {
+            self.StarDownBtn1.alpha = 1;
+            self.StarDownBtn2.alpha = 0.5;
+            self.StarDownBtn3.alpha = 0.5;
+            self.StarDownBtn4.alpha = 0.5;
+            self.StarDownBtn5.alpha = 0.5;
+        }
+        else if ([[videoInfo objectForKey:@"star"] isEqualToString:@"2"]) {
+            self.StarDownBtn1.alpha = 1;
+            self.StarDownBtn2.alpha = 1;
+            self.StarDownBtn3.alpha = 0.5;
+            self.StarDownBtn4.alpha = 0.5;
+            self.StarDownBtn5.alpha = 0.5;
+        }
+        else if ([[videoInfo objectForKey:@"star"] isEqualToString:@"3"]) {
+            self.StarDownBtn1.alpha = 1;
+            self.StarDownBtn2.alpha = 1;
+            self.StarDownBtn3.alpha = 1;
+            self.StarDownBtn4.alpha = 0.5;
+            self.StarDownBtn5.alpha = 0.5;
+        }
+        else if ([[videoInfo objectForKey:@"star"] isEqualToString:@"4"]) {
+            self.StarDownBtn1.alpha = 1;
+            self.StarDownBtn2.alpha = 1;
+            self.StarDownBtn3.alpha = 1;
+            self.StarDownBtn4.alpha = 1;
+            self.StarDownBtn5.alpha = 0.5;
+        }
+        else if ([[videoInfo objectForKey:@"star"] isEqualToString:@"5"]) {
+            self.StarDownBtn1.alpha = 1;
+            self.StarDownBtn2.alpha = 1;
+            self.StarDownBtn3.alpha = 1;
+            self.StarDownBtn4.alpha = 1;
+            self.StarDownBtn5.alpha = 1;
+        }
+    }
+}
+
+-(void) selectedVideos:(int) selectedStars {
+    
+    BOOL showedVideo = false;
+    
+    NSMutableArray *puzzleVideos = [[[NSUserDefaults standardUserDefaults] objectForKey:@"totalVideos"] mutableCopy];
+    sameStarVideos = [[NSMutableArray alloc] init];
+    for(NSString *puzzelNum in puzzleVideos) {
+        NSDictionary *videoInfo = [[NSUserDefaults standardUserDefaults] objectForKey:puzzelNum];
+        if ([[videoInfo objectForKey:@"star"] isEqualToString:[NSString stringWithFormat:@"%d", selectedStars]]) {
+            if (!showedVideo) {
+                _titleLabel.text=[NSString stringWithFormat:@"NO.%@ %@", [videoInfo objectForKey:@"PuzzleNum"],[videoInfo objectForKey:@"Title"]];
+                _titleLabel.font = [UIFont fontWithName:@"CourierNewPS-BoldMT" size:14.0f];
+                NSURL *url = [NSURL URLWithString:[videoInfo objectForKey:@"ThumbnailURL"]];
+                NSData *data = [NSData dataWithContentsOfURL:url];
+                UIImage *img = [[UIImage alloc] initWithData:data];
+                _thumbnailView.image=img;
+                _chosenVideoId=[videoInfo objectForKey:@"ID"];
+                _chosenPuzzelNum=[NSString stringWithFormat:@"%@",[videoInfo objectForKey:@"PuzzleNum"]];
+                _chosenVideoURL=[videoInfo objectForKey:@"VideoURL"];
+                _thumbnailView.hidden=NO;
+                [self.thumbnailView setUserInteractionEnabled:YES];
+                _titleLabel.hidden=NO;
+                
+                self.VideoLeftBtn.alpha = 1;
+                self.VideoRightBtn.alpha = 1;
+                
+                if ([[videoInfo objectForKey:@"star"] isEqualToString:@"0"]) {
+                    self.StarDownBtn1.alpha = 0.5;
+                    self.StarDownBtn2.alpha = 0.5;
+                    self.StarDownBtn3.alpha = 0.5;
+                    self.StarDownBtn4.alpha = 0.5;
+                    self.StarDownBtn5.alpha = 0.5;
+                }
+                else if ([[videoInfo objectForKey:@"star"] isEqualToString:@"1"]) {
+                    self.StarDownBtn1.alpha = 1;
+                    self.StarDownBtn2.alpha = 0.5;
+                    self.StarDownBtn3.alpha = 0.5;
+                    self.StarDownBtn4.alpha = 0.5;
+                    self.StarDownBtn5.alpha = 0.5;
+                }
+                else if ([[videoInfo objectForKey:@"star"] isEqualToString:@"2"]) {
+                    self.StarDownBtn1.alpha = 1;
+                    self.StarDownBtn2.alpha = 1;
+                    self.StarDownBtn3.alpha = 0.5;
+                    self.StarDownBtn4.alpha = 0.5;
+                    self.StarDownBtn5.alpha = 0.5;
+                }
+                else if ([[videoInfo objectForKey:@"star"] isEqualToString:@"3"]) {
+                    self.StarDownBtn1.alpha = 1;
+                    self.StarDownBtn2.alpha = 1;
+                    self.StarDownBtn3.alpha = 1;
+                    self.StarDownBtn4.alpha = 0.5;
+                    self.StarDownBtn5.alpha = 0.5;
+                }
+                else if ([[videoInfo objectForKey:@"star"] isEqualToString:@"4"]) {
+                    self.StarDownBtn1.alpha = 1;
+                    self.StarDownBtn2.alpha = 1;
+                    self.StarDownBtn3.alpha = 1;
+                    self.StarDownBtn4.alpha = 1;
+                    self.StarDownBtn5.alpha = 0.5;
+                }
+                else if ([[videoInfo objectForKey:@"star"] isEqualToString:@"5"]) {
+                    self.StarDownBtn1.alpha = 1;
+                    self.StarDownBtn2.alpha = 1;
+                    self.StarDownBtn3.alpha = 1;
+                    self.StarDownBtn4.alpha = 1;
+                    self.StarDownBtn5.alpha = 1;
+                }
+                _hintLabel.text = @"選擇條件，找到您想尋找的記憶";
+                showedVideo = true;
+            }
+            
+            [sameStarVideos addObject:[NSString stringWithFormat:@"%@", [videoInfo objectForKey:@"PuzzleNum"]]];
+        }
+    }
+    NSLog(@"same: %@", sameStarVideos);
+    if (!showedVideo) {
+        _thumbnailView.hidden=YES;
+        [self.thumbnailView setUserInteractionEnabled:NO];
+        _titleLabel.hidden=YES;
+        self.StarDownBtn1.alpha = 0;
+        self.StarDownBtn2.alpha = 0;
+        self.StarDownBtn3.alpha = 0;
+        self.StarDownBtn4.alpha = 0;
+        self.StarDownBtn5.alpha = 0;
+        _hintLabel.text = @"沒有找到符合條件的記憶資料";
+    }
+    
+}
 @end
