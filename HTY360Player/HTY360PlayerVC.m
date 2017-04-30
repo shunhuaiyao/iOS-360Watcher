@@ -51,6 +51,7 @@ static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
 @property MoodEvaluater *moodEvaluater;
 @property CGFloat maskHeight;
 
+
 //音效相關
 @property SystemSoundID soundID;
 
@@ -154,6 +155,8 @@ static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
     UITapGestureRecognizer *NoTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(Back360video)];
     NoTap.numberOfTapsRequired = 1;
     [self.NoLabel addGestureRecognizer:NoTap];
+    
+    self.playBtnUI.hidden = YES;
 }
 
 -(void) viewDidAppear:(BOOL)animated
@@ -287,7 +290,8 @@ static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
 {
     [NSObject cancelPreviousPerformRequestsWithTarget:self];
     [self pause];
-    
+    self.playBtnUI.hidden = NO;
+    self.pauseBtnUI.hidden = YES;
     _robotFrame.alpha = 1;
     _HintLabel.alpha = 1;
     _NoLabel.alpha = 1;
@@ -337,6 +341,8 @@ static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
     
     [NSObject cancelPreviousPerformRequestsWithTarget:self];
     [self play];
+    self.playBtnUI.hidden = YES;
+    self.pauseBtnUI.hidden = NO;
 }
 
 -(void) swipeSetting
@@ -384,8 +390,12 @@ static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
     [NSObject cancelPreviousPerformRequestsWithTarget:self];
     if ([self isPlaying]) {
         [self pause];
+        self.playBtnUI.hidden = NO;
+        self.pauseBtnUI.hidden = YES;
     } else {
         [self play];
+        self.playBtnUI.hidden = YES;
+        self.pauseBtnUI.hidden = NO;
     }
 }
 

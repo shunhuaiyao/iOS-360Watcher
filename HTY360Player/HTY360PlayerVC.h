@@ -37,6 +37,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *YesLabel;
 @property (weak, nonatomic) IBOutlet UILabel *SlashLabel;
 @property (weak, nonatomic) IBOutlet UILabel *NoLabel;
+@property (weak, nonatomic) IBOutlet UIButton *pauseBtnUI;
+@property (weak, nonatomic) IBOutlet UIButton *playBtnUI;
 
 
 @end

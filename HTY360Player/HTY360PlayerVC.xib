@@ -18,6 +18,8 @@
                 <outlet property="backButton" destination="XuQ-LV-4yQ" id="SFn-6d-4o2"/>
                 <outlet property="gyroButton" destination="DR2-sX-Ecz" id="2WI-6m-yy8"/>
                 <outlet property="maskFrameView" destination="LKw-wE-1ib" id="Vdi-HO-0In"/>
+                <outlet property="pauseBtnUI" destination="2Za-OP-sNy" id="IMb-cc-i8g"/>
+                <outlet property="playBtnUI" destination="6YA-LP-NsK" id="iDk-do-q1C"/>
                 <outlet property="playButton" destination="3Pr-21-8dz" id="Nom-Nr-PNu"/>
                 <outlet property="playerControlBackgroundView" destination="utK-WR-lKf" id="mZV-sx-MoY"/>
                 <outlet property="progressSlider" destination="UtA-4n-mGO" id="93H-Vc-Wi3"/>
@@ -144,6 +146,17 @@
                         <action selector="tappedPauseBtn:" destination="-1" eventType="touchUpInside" id="FE4-5l-Hcn"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6YA-LP-NsK" userLabel="playBtn">
+                    <rect key="frame" x="535" y="17" width="17" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="VnR-HY-G6K"/>
+                        <constraint firstAttribute="width" constant="17" id="Wyx-UV-bD3"/>
+                    </constraints>
+                    <state key="normal" image="360playBtn"/>
+                    <connections>
+                        <action selector="tappedPauseBtn:" destination="-1" eventType="touchUpInside" id="PiV-Pi-KYu"/>
+                    </connections>
+                </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OZM-U2-GoE" userLabel="endBtn">
                     <rect key="frame" x="463" y="13" width="54" height="28"/>
                     <constraints>
@@ -155,12 +168,12 @@
                         <action selector="tappedExitBtn:" destination="-1" eventType="touchUpInside" id="LVq-m6-FoF"/>
                     </connections>
                 </button>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="blackMask" translatesAutoresizingMaskIntoConstraints="NO" id="LKw-wE-1ib">
-                    <rect key="frame" x="-1" y="-1" width="669" height="377"/>
-                </imageView>
                 <imageView userInteractionEnabled="NO" alpha="0.0" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="robotFrame" translatesAutoresizingMaskIntoConstraints="NO" id="dlX-Vz-JxP" userLabel="robotFrame">
                     <rect key="frame" x="-1" y="-1" width="669" height="377"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="blackMask" translatesAutoresizingMaskIntoConstraints="NO" id="LKw-wE-1ib">
+                    <rect key="frame" x="-1" y="-1" width="669" height="377"/>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="確定要終止這次的記憶探索嗎？" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v5c-XA-X8u" userLabel="HintLabel">
                     <rect key="frame" x="140" y="321" width="327" height="50"/>
@@ -211,19 +224,23 @@
                 <constraint firstAttribute="bottom" secondItem="c7m-eS-5Xj" secondAttribute="bottom" constant="4" id="CGv-lg-olX"/>
                 <constraint firstAttribute="trailing" secondItem="imx-s1-gJy" secondAttribute="trailing" constant="60" id="Cja-Rb-IcJ"/>
                 <constraint firstItem="cyT-4T-aHq" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="17" id="DOx-S9-hG5"/>
+                <constraint firstAttribute="bottom" secondItem="6YA-LP-NsK" secondAttribute="bottom" constant="337" id="DlH-lD-YdZ"/>
                 <constraint firstAttribute="bottom" secondItem="v5c-XA-X8u" secondAttribute="bottom" constant="4" id="E3k-m1-JKj"/>
                 <constraint firstAttribute="trailing" secondItem="jY5-SC-xkZ" secondAttribute="trailing" constant="133.5" id="F1T-5q-5SL"/>
                 <constraint firstItem="LKw-wE-1ib" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="-1" id="FOp-tK-dqU"/>
+                <constraint firstItem="6YA-LP-NsK" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="535" id="JaQ-Lh-w0g"/>
                 <constraint firstAttribute="bottom" secondItem="utK-WR-lKf" secondAttribute="bottom" constant="30" id="M8X-Dv-5Mh"/>
                 <constraint firstItem="utK-WR-lKf" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="570" id="Pg6-b2-Vlb"/>
                 <constraint firstItem="v5c-XA-X8u" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="140" id="afE-TR-Byz"/>
                 <constraint firstItem="utK-WR-lKf" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="30" id="agq-Yy-Nsi"/>
                 <constraint firstItem="Zn4-vM-j0n" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="17" id="dgC-Iu-18S"/>
                 <constraint firstAttribute="trailing" secondItem="LKw-wE-1ib" secondAttribute="trailing" constant="-1" id="fF3-pw-Brf"/>
+                <constraint firstItem="6YA-LP-NsK" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="17" id="gME-X5-dlm"/>
                 <constraint firstItem="OZM-U2-GoE" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="13" id="hUJ-Pn-6R4"/>
                 <constraint firstAttribute="trailing" secondItem="utK-WR-lKf" secondAttribute="trailing" constant="30" id="jNk-tJ-Xc4"/>
                 <constraint firstItem="2Za-OP-sNy" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="17" id="mTv-1a-Ndm"/>
                 <constraint firstItem="utK-WR-lKf" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="mr7-p9-MlX"/>
+                <constraint firstAttribute="trailing" secondItem="6YA-LP-NsK" secondAttribute="trailing" constant="115" id="ney-b2-46o"/>
                 <constraint firstAttribute="trailing" secondItem="v5c-XA-X8u" secondAttribute="trailing" constant="200" id="ofz-Lt-hNq"/>
                 <constraint firstAttribute="bottom" secondItem="LKw-wE-1ib" secondAttribute="bottom" constant="-1" id="s0F-By-T1k"/>
                 <constraint firstItem="imx-s1-gJy" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="565" id="tLp-Tq-qlq"/>
@@ -243,8 +260,9 @@
     <resources>
         <image name="360endBtn" width="110" height="58"/>
         <image name="360pauseBtn" width="23" height="41"/>
+        <image name="360playBtn" width="35" height="41"/>
         <image name="back" width="512" height="512"/>
-        <image name="blackMask" width="1332" height="749"/>
+        <image name="blackMask" width="432" height="240"/>
         <image name="camera" width="47" height="41"/>
         <image name="move" width="87" height="44"/>
         <image name="moveMode" width="59" height="41"/>
