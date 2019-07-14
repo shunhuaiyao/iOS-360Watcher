@@ -79,7 +79,7 @@
     [self triangleBling];
     
     // init ripple button
-    rippleButton1 = [[BTRippleButtton alloc]initWithImage:[UIImage imageNamed:nil] andFrame:CGRectMake(_microBtn.frame.origin.x + _microBtn.frame.size.width/2 - 75/2, _microBtn.frame.origin.y, 75, 75) andTarget:nil andID:self];
+    rippleButton1 = [[BTRippleButtton alloc]initWithImage:[UIImage imageNamed:nil] andFrame:CGRectMake(_microBtn.frame.origin.x + _microBtn.frame.size.width/2 - 75, _microBtn.frame.origin.y + _microBtn.frame.size.height/2 - 75, 75, 75) andTarget:nil andID:self];
     [rippleButton1 setRippeEffectEnabled:YES];
     [rippleButton1 setRippleEffectWithColor:[UIColor colorWithRed:255/255.f green:255/255.f blue:255/255.f alpha:1]];
     [self.view addSubview:rippleButton1];

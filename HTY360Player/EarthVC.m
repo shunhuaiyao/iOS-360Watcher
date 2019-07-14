@@ -1450,12 +1450,52 @@
     
 }
 
+-(void) addMockData {
+    NSMutableArray *puzzleVideos = [[NSMutableArray alloc] init];
+    [puzzleVideos addObject:@"video1"];
+    [puzzleVideos addObject:@"video2"];
+    [puzzleVideos addObject:@"video3"];
+    [[NSUserDefaults standardUserDefaults] setObject:puzzleVideos forKey:@"totalVideos"];
+    
+    NSMutableDictionary *videoInfo = [NSMutableDictionary new];
+    [videoInfo setObject:@"1" forKey:@"ID"];
+    [videoInfo setObject:@"video1" forKey:@"PuzzleNum"];
+    [videoInfo setObject:@"Hog Rider" forKey:@"Title"];
+    [videoInfo setObject:@"4" forKey:@"star"];
+    [videoInfo setObject:[NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/game_equir.png", [[NSBundle mainBundle] resourcePath]]].absoluteString forKey:@"ThumbnailURL"];
+    [videoInfo setObject:[NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/game_equir.m4v", [[NSBundle mainBundle] resourcePath]]].absoluteString forKey:@"VideoURL"];
+    [[NSUserDefaults standardUserDefaults] setObject:videoInfo forKey:@"video1"];
+    
+    videoInfo = [NSMutableDictionary new];
+    [videoInfo setObject:@"2" forKey:@"ID"];
+    [videoInfo setObject:@"video2" forKey:@"PuzzleNum"];
+    [videoInfo setObject:@"Pac-Man" forKey:@"Title"];
+    [videoInfo setObject:@"4" forKey:@"star"];
+    [videoInfo setObject:[NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/pacman_equir.png", [[NSBundle mainBundle] resourcePath]]].absoluteString forKey:@"ThumbnailURL"];
+    [videoInfo setObject:[NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/pacman_equir.m4v", [[NSBundle mainBundle] resourcePath]]].absoluteString forKey:@"VideoURL"];
+    [[NSUserDefaults standardUserDefaults] setObject:videoInfo forKey:@"video2"];
+    
+    videoInfo = [NSMutableDictionary new];
+    [videoInfo setObject:@"3" forKey:@"ID"];
+    [videoInfo setObject:@"video3" forKey:@"PuzzleNum"];
+    [videoInfo setObject:@"Chariot" forKey:@"Title"];
+    [videoInfo setObject:@"3" forKey:@"star"];
+    [videoInfo setObject:[NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/ride_equir.png", [[NSBundle mainBundle] resourcePath]]].absoluteString forKey:@"ThumbnailURL"];
+    [videoInfo setObject:[NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/ride_equir.m4v", [[NSBundle mainBundle] resourcePath]]].absoluteString forKey:@"VideoURL"];
+    [[NSUserDefaults standardUserDefaults] setObject:videoInfo forKey:@"video3"];
+}
+
 -(void) showAllVideos {
     
     BOOL showedVideo = false;
     
     NSMutableArray *puzzleVideos = [[[NSUserDefaults standardUserDefaults] objectForKey:@"totalVideos"] mutableCopy];
     sameStarVideos = [[NSMutableArray alloc] init];
+    if ([puzzleVideos count] == 0) {
+        [self addMockData];
+        puzzleVideos = [[[NSUserDefaults standardUserDefaults] objectForKey:@"totalVideos"] mutableCopy];
+        NSLog(@"NUM VIDEOS:%lu", (unsigned long)[puzzleVideos count]);
+    }
     for(NSString *puzzelNum in puzzleVideos) {
         NSDictionary *videoInfo = [[NSUserDefaults standardUserDefaults] objectForKey:puzzelNum];
         if (!showedVideo) {

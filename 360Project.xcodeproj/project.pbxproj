@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		202E838E1EAE638900FAEB0C /* BGM.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 202E838D1EAE638900FAEB0C /* BGM.mp3 */; };
+		2095137522DBA5A1007D2A45 /* game_equir.m4v in Resources */ = {isa = PBXBuildFile; fileRef = 2095137222DBA597007D2A45 /* game_equir.m4v */; };
+		2095137622DBA5A1007D2A45 /* ride_equir.m4v in Resources */ = {isa = PBXBuildFile; fileRef = 2095137322DBA59E007D2A45 /* ride_equir.m4v */; };
+		2095137722DBA5A1007D2A45 /* pacman_equir.m4v in Resources */ = {isa = PBXBuildFile; fileRef = 2095137422DBA5A1007D2A45 /* pacman_equir.m4v */; };
+		2095137B22DBA5DE007D2A45 /* game_equir.png in Resources */ = {isa = PBXBuildFile; fileRef = 2095137822DBA5DD007D2A45 /* game_equir.png */; };
+		2095137C22DBA5DE007D2A45 /* pacman_equir.png in Resources */ = {isa = PBXBuildFile; fileRef = 2095137922DBA5DD007D2A45 /* pacman_equir.png */; };
+		2095137D22DBA5DE007D2A45 /* ride_equir.png in Resources */ = {isa = PBXBuildFile; fileRef = 2095137A22DBA5DE007D2A45 /* ride_equir.png */; };
 		20D244631EA123ED00DC7B88 /* btRippleButtton.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D244621EA123ED00DC7B88 /* btRippleButtton.m */; };
 		20D244651EA1244B00DC7B88 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20D244641EA1244B00DC7B88 /* QuartzCore.framework */; };
 		20FFB70A1E9DAE8900AD5C83 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED593D651E5264080004EC38 /* AVFoundation.framework */; };
@@ -80,6 +86,12 @@
 
 /* Begin PBXFileReference section */
 		202E838D1EAE638900FAEB0C /* BGM.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = BGM.mp3; sourceTree = "<group>"; };
+		2095137222DBA597007D2A45 /* game_equir.m4v */ = {isa = PBXFileReference; lastKnownFileType = file; path = game_equir.m4v; sourceTree = "<group>"; };
+		2095137322DBA59E007D2A45 /* ride_equir.m4v */ = {isa = PBXFileReference; lastKnownFileType = file; path = ride_equir.m4v; sourceTree = "<group>"; };
+		2095137422DBA5A1007D2A45 /* pacman_equir.m4v */ = {isa = PBXFileReference; lastKnownFileType = file; path = pacman_equir.m4v; sourceTree = "<group>"; };
+		2095137822DBA5DD007D2A45 /* game_equir.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = game_equir.png; sourceTree = "<group>"; };
+		2095137922DBA5DD007D2A45 /* pacman_equir.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pacman_equir.png; sourceTree = "<group>"; };
+		2095137A22DBA5DE007D2A45 /* ride_equir.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ride_equir.png; sourceTree = "<group>"; };
 		20D244611EA123ED00DC7B88 /* btRippleButtton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = btRippleButtton.h; sourceTree = "<group>"; };
 		20D244621EA123ED00DC7B88 /* btRippleButtton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = btRippleButtton.m; sourceTree = "<group>"; };
 		20D244641EA1244B00DC7B88 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -259,6 +271,12 @@
 		4051089E1BEF7E3C003BCFF7 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				2095137822DBA5DD007D2A45 /* game_equir.png */,
+				2095137922DBA5DD007D2A45 /* pacman_equir.png */,
+				2095137A22DBA5DE007D2A45 /* ride_equir.png */,
+				2095137222DBA597007D2A45 /* game_equir.m4v */,
+				2095137422DBA5A1007D2A45 /* pacman_equir.m4v */,
+				2095137322DBA59E007D2A45 /* ride_equir.m4v */,
 				EDF622701E854E3E00116521 /* tutorial.mp4 */,
 				EDF6226C1E84E38D00116521 /* screenshot.mp3 */,
 				202E838D1EAE638900FAEB0C /* BGM.mp3 */,
@@ -600,6 +618,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -623,17 +642,21 @@
 				ED7239311E5F02DE009CDAD9 /* ResponseVC.xib in Resources */,
 				EDFCB0BB1E36CB970073E0C6 /* ReceiveVC.xib in Resources */,
 				405108CE1BEF8B4B003BCFF7 /* Shader.fsh in Resources */,
+				2095137D22DBA5DE007D2A45 /* ride_equir.png in Resources */,
 				405108AE1BEF7E3C003BCFF7 /* LaunchScreen.storyboard in Resources */,
 				ED72393F1E5F264C009CDAD9 /* ResponseCell.xib in Resources */,
 				ED0715331E478F4200147844 /* EarthVC.xib in Resources */,
 				EDF622711E854E3E00116521 /* tutorial.mp4 in Resources */,
 				ED3DE92B1E7BFE9D00690D05 /* struggled.mp3 in Resources */,
+				2095137622DBA5A1007D2A45 /* ride_equir.m4v in Resources */,
+				2095137522DBA5A1007D2A45 /* game_equir.m4v in Resources */,
 				ED72391C1E5EC42A009CDAD9 /* BrowseVC.xib in Resources */,
 				EDFCB0BD1E37F68B0073E0C6 /* Assets.xcassets in Resources */,
 				ED559A701DFE30A400BF514D /* TelescopeVC.xib in Resources */,
 				405108CA1BEF85B3003BCFF7 /* HTYMenuVC.xib in Resources */,
 				ED559A911DFE7CE100BF514D /* CollectionVC.xib in Resources */,
 				ED559A851DFE58B700BF514D /* IntercomVC.xib in Resources */,
+				2095137C22DBA5DE007D2A45 /* pacman_equir.png in Resources */,
 				405108BC1BEF7F32003BCFF7 /* HTY360PlayerVC.xib in Resources */,
 				ED7239371E5F1E86009CDAD9 /* EchoVC.xib in Resources */,
 				EDF899611E81CD6F00E2CFA4 /* CommentVC.xib in Resources */,
@@ -646,8 +669,10 @@
 				EDF6226D1E84E38D00116521 /* screenshot.mp3 in Resources */,
 				EDFCB0B61E36CB840073E0C6 /* SendVC.xib in Resources */,
 				EDF6226B1E84DC5900116521 /* tapArrow.mp3 in Resources */,
+				2095137722DBA5A1007D2A45 /* pacman_equir.m4v in Resources */,
 				ED7239451E5F2804009CDAD9 /* FakeVC.xib in Resources */,
 				ED01995E1E7EF4B6003EE5B2 /* group11_mood.plist in Resources */,
+				2095137B22DBA5DE007D2A45 /* game_equir.png in Resources */,
 				ED3DE9281E7BFE9D00690D05 /* depressed.mp3 in Resources */,
 				ED3DE92A1E7BFE9D00690D05 /* peaceful.mp3 in Resources */,
 				405108CC1BEF8B18003BCFF7 /* Shader.vsh in Resources */,
